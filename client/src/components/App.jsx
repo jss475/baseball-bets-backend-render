@@ -1,12 +1,26 @@
+import { useReducer } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header from './Header'
 import Login from './Login'
+import Signup from './Signup'
+
+const reducer = (user, action) => {
+  switch(action.type) {
+    case 'login/signup':
+      return action.payload.user
+    case 'logout':
+      return {}
+    default:
+      return user
+  }
+}
 
 function App() {
+  const [user, dispatch] = useReducer(reducer, {})
 
   return (
     <div className="App">
-      <Header />
+      <Header hasUser={ Object.keys(user).length !== 0 }/>
       <Switch>
         <Route exact path='/'>
           Welcome to Baseball Bets
@@ -18,7 +32,7 @@ function App() {
           <Login />
         </Route>
         <Route exact path='/signup'>
-          signup
+          <Signup />
         </Route>
         <Route exact path='/user'>
           welcome user
