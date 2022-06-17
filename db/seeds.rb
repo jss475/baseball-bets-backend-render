@@ -9,11 +9,14 @@
 #Creating users
 puts "Creating users..."
 
-User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password, money: rand(1..100), winnings: rand(1..100))
-User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password, money: rand(1..100), winnings: rand(1..100))
-User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password, money: rand(1..100), winnings: rand(1..100))
-User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password, money: rand(1..100), winnings: rand(1..100))
-User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password, money: rand(1..100), winnings: rand(1..100))
+5.times do
+  User.create(name: Faker::Name.name, 
+              username: Faker::Internet.username, 
+              password_digest: Faker::Internet.password, 
+              money: rand(1..100), 
+              winnings: rand(1..100)
+             )
+end
 
 puts "Done creating users!"
 
@@ -25,7 +28,7 @@ Player.create(name: Faker::Name.name, team_name: Faker::Team.name, image: Faker:
 Player.create(name: Faker::Name.name, team_name: Faker::Team.name, image: Faker::LoremFlickr.image, stats: "0.280", current_bets: rand(10..100000))
 Player.create(name: Faker::Name.name, team_name: Faker::Team.name, image: Faker::LoremFlickr.image, stats: "0.270", current_bets: rand(10..100000))
 Player.create(name: Faker::Name.name, team_name: Faker::Team.name, image: Faker::LoremFlickr.image, stats: "0.260", current_bets: rand(10..100000))
-puts "Dont creating players"
+puts "Done creating players"
 
 #Creating bets
 puts "Creating bets..."

@@ -1,10 +1,11 @@
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-export default function Header () {
+export default function Header ({ hasUser }) {
+  //console.log(hasUser)
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="primary" variant="dark">
         {/*<Container>*/}
           <Navbar.Brand href="/about">
             <img
@@ -22,14 +23,19 @@ export default function Header () {
               <Nav.Link href='#action1'>bets</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to='/login' exact>
-              <Nav.Link href='#action2'>login</Nav.Link>
-            </LinkContainer>
+            {!hasUser ? 
+              <>
+                <LinkContainer to='/login' exact>
+                  <Nav.Link href='#action2'>login</Nav.Link>
+                </LinkContainer>
 
-            <LinkContainer to='/signup' exact>
-              <Nav.Link href='#action3'>signup</Nav.Link>
-            </LinkContainer>
+                <LinkContainer to='/signup' exact>
+                  <Nav.Link href='#action3'>signup</Nav.Link>
+                </LinkContainer> 
+              </>
+            : null}
           </Nav>
+
         {/*</Container>*/}
       </Navbar> 
     </>
