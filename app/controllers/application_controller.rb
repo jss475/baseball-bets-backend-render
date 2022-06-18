@@ -8,11 +8,11 @@ class ApplicationController < ActionController::API
   private
 
   def record_not_found(exception)
-    return render json: {error: exception}, status: :not_found
+    render json: {error: exception}, status: :not_found
   end
 
   def record_invalid(invalid)
-    return render json: {error: invalid}, status: :unprocessable_entity
+    render json: {error: invalid}, status: :unprocessable_entity
   end
 
   # def unpermitted_parameters(invalid)

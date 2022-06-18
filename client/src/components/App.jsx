@@ -1,26 +1,18 @@
-import { useReducer } from 'react'
+import { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header from './Header'
 import Login from './Login'
 import Signup from './Signup'
-
-const reducer = (user, action) => {
-  switch(action.type) {
-    case 'login/signup':
-      return action.payload.user
-    case 'logout':
-      return {}
-    default:
-      return user
-  }
-}
+import User from './User'
 
 function App() {
-  const [user, dispatch] = useReducer(reducer, {})
+  const [isLoggedin, setLoggedin] = useState(false)
+
+  const handleLogin = (val) => setLoggedin(val)
 
   return (
     <div className="App">
-      <Header hasUser={ Object.keys(user).length !== 0 }/>
+      <Header isLoggedin={isLoggedin} handleLogin={handleLogin}/>
       <Switch>
         <Route exact path='/'>
           Welcome to Baseball Bets
@@ -29,13 +21,13 @@ function App() {
           about
         </Route>
         <Route exact path='/login'>
-          <Login />
+          <Login handleLogin={handleLogin}/>
         </Route>
         <Route exact path='/signup'>
-          <Signup />
+          <Signup handleLogin={handleLogin}/>
         </Route>
-        <Route exact path='/user'>
-          welcome user
+        <Route exact path='/user/:id'>
+          <User />
         </Route>
         <Route exact path='/players'>
           wow, such players 

@@ -1,33 +1,42 @@
-import { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
-const EMPTY_OBJ = {
-  name: '',
-  username: '',
-  password: '' 
-}
+export default function Signup ({ handleLogin }) {
 
-export default function Signup () {
-  const [form, setForm] = useState({ ...EMPTY_OBJ })
+  let history = useHistory()
   
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-  {/*useEffect(() => {*/}
-    {/*console.log(form) */}
-  {/*}, [form])*/}
+    let form = new FormData(document.querySelector('#signup-form'))
+    let obj = {}
 
-  const handleSubmit = (e) => e.preventDefault()
-       
+    let keys = Array.from(form.keys()) 
+    let values = Array.from(form.values())
+    keys.forEach((key, i) => obj = { ...obj, [key]: values[i] })
+
+    let req = await fetch('/users', {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify(obj)
+    })
+
+    if (req.ok) {
+      let id = await req.json()
+      handleLogin(true)
+      history.push(`/user/${id}`)
+    }
+
+  }    
+
   return (
-      <Form onSubmit={handleSubmit}>
+      <Form id='signup-form' onSubmit={handleSubmit}>
 
         <Form.Group className='my-3'>
           <Form.Label>name:</Form.Label>
           <Form.Control 
             name='name'
-            value={form.name}
             type='text'
-            onChange={handleChange}
           />
         </Form.Group>
 
@@ -35,9 +44,7 @@ export default function Signup () {
           <Form.Label>username:</Form.Label>
           <Form.Control 
             name='username'
-            value={form.username}
             type='text'
-            onChange={handleChange}
           />
         </Form.Group>
 
@@ -45,9 +52,7 @@ export default function Signup () {
           <Form.Label>password:</Form.Label>
           <Form.Control 
             name='password'
-            value={form.password}
             type='text'
-            onChange={handleChange}
           />
         </Form.Group>
 
