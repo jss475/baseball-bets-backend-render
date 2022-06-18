@@ -1,8 +1,16 @@
-import { Nav, Navbar, Container } from 'react-bootstrap'
+import { Nav, Navbar, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { useHistory } from 'react-router-dom'
 
-export default function Header ({ hasUser }) {
-  //console.log(hasUser)
+export default function Header ({ isLoggedin, handleLogin }) {
+
+  let history = useHistory()
+
+  const handleClick = () => {
+    handleLogin(false)
+    history.push('/home')
+  }
+
   return (
     <>
       <Navbar bg="primary" variant="dark">
@@ -23,7 +31,7 @@ export default function Header ({ hasUser }) {
               <Nav.Link href='#action1'>bets</Nav.Link>
             </LinkContainer>
 
-            {!hasUser ? 
+            {!isLoggedin ? 
               <>
                 <LinkContainer to='/login' exact>
                   <Nav.Link href='#action2'>login</Nav.Link>
@@ -33,7 +41,7 @@ export default function Header ({ hasUser }) {
                   <Nav.Link href='#action3'>signup</Nav.Link>
                 </LinkContainer> 
               </>
-            : null}
+              : <Button onClick={handleClick}>logout</Button>}
           </Nav>
 
         {/*</Container>*/}
