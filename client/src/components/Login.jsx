@@ -4,18 +4,23 @@ export default function Login () {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     let form = new FormData(document.querySelector('#login-form')) 
-    let req = await fetch('http://localhost:3001/login', {
-      method: 'POST',
-      body: form
-    })
+
+    for (let i of form.values) {
+       console.log('i', i)
+    }
+    
+    {/* let req = await fetch('/login', {*/}
+      {/*method: 'POST',*/}
+      {/*body: form*/}
+    {/*})*/}
+
   }
  
   return (
 
     <form 
-      action='/login'
-      method='POST'
       id='login-form' 
       onSubmit={handleSubmit} 
     >
