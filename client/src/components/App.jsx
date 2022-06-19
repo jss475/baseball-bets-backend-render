@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header from './Header'
 import Login from './Login'
@@ -7,6 +7,17 @@ import User from './User'
 
 function App() {
   const [isLoggedin, setLoggedin] = useState(false)
+
+  useEffect(() => { 
+    
+    const checkLogin = async () => {
+      let req = await fetch('/loggedin')
+      setLoggedin(req.ok)
+    }
+     
+    checkLogin()
+
+  }, [])
 
   const handleLogin = (val) => setLoggedin(val)
 
