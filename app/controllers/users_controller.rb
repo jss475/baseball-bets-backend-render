@@ -1,16 +1,18 @@
 class UsersController < ApplicationController
+  
+  before_action :is_authorized?, only: [:show]
     
-    def index
-        render json: User.all, status: :ok
-    end
+#    def index
+        #render json: User.all, status: :ok
+    #end
 
     def show
-        user = User.find(params[:id])
-        render json: user, status: :ok
+        render json: current_user, status: :ok
     end
 
     def create
       user = User.create!(user_params)
+      session[:user_id] = user.id
       render json: user.id, status: :ok
     end
 
@@ -19,5 +21,5 @@ class UsersController < ApplicationController
     def user_params
       params.permit(:name, :username, :password)
     end
-    
+        
 end

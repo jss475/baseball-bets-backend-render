@@ -6,7 +6,11 @@ export default function Header ({ isLoggedin, handleLogin }) {
 
   let history = useHistory()
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    await fetch('/logout', {
+      method: 'DELETE'
+    })
+
     handleLogin(false)
     history.push('/home')
   }
