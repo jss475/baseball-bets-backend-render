@@ -25,6 +25,10 @@ export default function Login ({ handleLogin }) {
       let id = await req.json()
       handleLogin(true)
       history.push(`/user/${id}`)
+
+    } else {
+      let error = await req.json()
+      console.log('error:', error)
     }
   }
  
@@ -59,13 +63,3 @@ export default function Login ({ handleLogin }) {
   )  
 }
 
-{/*    <form */}
-      {/*id='login-form' */}
-      {/*onSubmit={handleSubmit} */}
-    {/*>*/}
-      {/*<input type='text' name='username'/>*/}
-      {/*<input type='text' name='password'/>*/}
-      {/*<button type='submit'>*/}
-        {/*submit*/}
-      {/*</button>*/}
-    {/*</form>*/}
