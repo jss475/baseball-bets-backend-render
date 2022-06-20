@@ -7,7 +7,7 @@ export default function User () {
   const history = useHistory()
 
   useEffect(() => {
-    console.log('render')
+
     const getUser = async () => {
       let req = await fetch(`/users/${id}`) 
 

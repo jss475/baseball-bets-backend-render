@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+
   def login
     user = User.find_by(username: params[:username])
 
@@ -14,12 +15,6 @@ class SessionsController < ApplicationController
 
     end
 
-  end
-
-  def loggedin?
-    if current_user
-      head :ok
-    end
   end
 
   def logout

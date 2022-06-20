@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header from './Header'
 import Login from './Login'
@@ -6,20 +6,15 @@ import Signup from './Signup'
 import User from './User'
 
 function App() {
-  const [isLoggedin, setLoggedin] = useState(false)
+  const [isLoggedin, setLoggedin] = useState(() => {
+    const loggedin = localStorage.getItem('loggedin')
+    return loggedin ? true : false
+  })
 
-  useEffect(() => { 
-    
-    const checkLogin = async () => {
-      let req = await fetch('/loggedin')
-      setLoggedin(req.ok)
-    }
-     
-    checkLogin()
-
-  }, [])
-
-  const handleLogin = (val) => setLoggedin(val)
+  const handleLogin = (val) => {
+    setLoggedin(val)
+    val ? localStorage.setItem('loggedin', JSON.stringify(true)) : localStorage.clear()
+  }
 
   return (
     <div className="App">

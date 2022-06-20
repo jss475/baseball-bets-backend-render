@@ -12,17 +12,17 @@ export default function Header ({ isLoggedin, handleLogin }) {
     })
 
     handleLogin(false)
-    history.push('/home')
+    history.push('/')
   }
 
   return (
     <>
       <Navbar bg="primary" variant="dark">
         {/*<Container>*/}
-          <Navbar.Brand href="/about">
+          <Navbar.Brand href="/">
             <img
-              alt=""
-              src="/logo.svg"
+              alt="Logo"
+              src=""
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -31,18 +31,22 @@ export default function Header ({ isLoggedin, handleLogin }) {
           </Navbar.Brand>
           <Nav className='me-auto'>
 
+            <LinkContainer to='/about' exact>
+              <Nav.Link href='#action1'>about</Nav.Link>
+            </LinkContainer>
+
             <LinkContainer to='/bets' exact>
-              <Nav.Link href='#action1'>bets</Nav.Link>
+              <Nav.Link href='#action2'>bets</Nav.Link>
             </LinkContainer>
 
             {!isLoggedin ? 
               <>
                 <LinkContainer to='/login' exact>
-                  <Nav.Link href='#action2'>login</Nav.Link>
+                  <Nav.Link href='#action3'>login</Nav.Link>
                 </LinkContainer>
 
                 <LinkContainer to='/signup' exact>
-                  <Nav.Link href='#action3'>signup</Nav.Link>
+                  <Nav.Link href='#action4'>signup</Nav.Link>
                 </LinkContainer> 
               </>
               : <Button onClick={handleClick}>logout</Button>}
