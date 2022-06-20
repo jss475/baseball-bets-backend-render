@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   namespace :api do
     resources :players, only: [:index, :show]
     resources :bets
-    resources :users, only: [:index, :show]
-    get '/login', to: 'sessions#login'
+    resources :users, only: [:index]
+    get '/login', to: 'sessions#create'
+    get '/me', to: 'users#show'
+    get '/signup', to: "users#create"
+    get '/logout', to: "sessions#destroy"
   end
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
