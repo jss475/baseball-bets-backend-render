@@ -10,7 +10,6 @@ function PlaceBets({bet}){
     const { win, odds, description, current_bets, player, id} = refContainer.current
    console.log(`Bet Id: ${id}`)
     function handleBetSubmit(e){
-        debugger
         e.preventDefault()
         const configObj = {
             method: 'POST',
