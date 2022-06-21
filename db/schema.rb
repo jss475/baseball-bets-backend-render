@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_06_21_175058) do
     t.integer "player_id"
     t.boolean "win"
     t.float "price"
-    t.string "odds"
+    t.integer "odds"
     t.string "description"
     t.float "current_bets"
     t.datetime "created_at", precision: 6, null: false

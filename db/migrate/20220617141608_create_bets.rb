@@ -5,7 +5,7 @@ class CreateBets < ActiveRecord::Migration[6.1]
       t.integer :player_id
       t.boolean :win
       t.float :price
-      t.string :odds
+      t.integer :odds
       t.string :description
       t.float :current_bets
 
