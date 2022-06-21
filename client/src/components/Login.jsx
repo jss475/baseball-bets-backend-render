@@ -13,33 +13,35 @@ export default function Login ({ handleLogin }) {
 
     let form = new FormData(document.querySelector('#login-form')) 
 
-    let obj = {}
+    let obj = { 
+      username: form.get('username'), 
+      password: form.get('password') 
+    }
 
-    let keys = Array.from(form.keys()) 
-    let values = Array.from(form.values())
-    keys.forEach((key, i) => obj = { ...obj, [key]: values[i] })
+    //let keys = Array.from(form.keys()) 
+    //let values = Array.from(form.values())
+    //keys.forEach((key, i) => obj = { ...obj, [key]: values[i] })
 
     let req = await fetch('/login', {
       method: 'POST',
       headers: {'content-type': 'application/json'},
-      body: JSON.stringify(form)
+      body: JSON.stringify(obj)
     })
 
     if (req.ok) {
-      let id = await req.json()
       handleLogin(true)
-      history.push(`/user/${id}`)
+      setError('')
+      history.push('/user')
 
     } else {
       let err = await req.json()
-      setError(err)
+      setError(err.error)
     }
   }
- 
-  console.log(error.error)
+
   return (
     <>
-    {Object.keys(error).length > 0 ? <p>{error.error}</p> : null}
+    {error.length > 0 ? <p>{error}</p> : null}
       <Form 
         id='login-form' 
         onSubmit={handleSubmit}
