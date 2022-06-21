@@ -4,6 +4,7 @@ import Header from './Header'
 import Login from './Login'
 import Signup from './Signup'
 import User from './User'
+import Players from './Players'
 import BetsContainer from './BetsContainer'
 
 function App() {
@@ -20,35 +21,37 @@ function App() {
   return (
     <div className="App">
       <Header isLoggedin={isLoggedin} handleLogin={handleLogin}/>
-      <Switch>
-        <Route exact path='/'>
-          Welcome to Baseball Bets
-        </Route>
-        <Route exact path='/about'>
-          about
-        </Route>
-        <Route exact path='/login'>
-          <Login handleLogin={handleLogin}/>
-        </Route>
-        <Route exact path='/signup'>
-          <Signup handleLogin={handleLogin}/>
-        </Route>
-        <Route exact path='/user/:id'>
-          <User />
-        </Route>
-        <Route exact path='/players'>
-          wow, such players 
-        </Route>
-        <Route exact path='/players/:id'>
-          hey here's a player sick
-        </Route>
-        <Route exact path='/bets'>
-          <BetsContainer />
-        </Route>
-        <Route exact path='/bets/:id'>
-          <BetsContainer />
-        </Route>
-      </Switch>
+      <div className='container'> 
+        <Switch>
+          <Route exact path='/'>
+            Welcome to Baseball Bets
+          </Route>
+          <Route exact path='/about'>
+            about
+          </Route>
+          <Route exact path='/login'>
+            <Login handleLogin={handleLogin}/>
+          </Route>
+          <Route exact path='/signup'>
+            <Signup handleLogin={handleLogin}/>
+          </Route>
+          <Route exact path='/user'>
+            <User />
+          </Route>
+          <Route exact path='/players'>
+            <Players />
+          </Route>
+          <Route exact path='/players/:id'>
+            hey here's a player sick
+          </Route>
+          <Route exact path='/bets'>
+            <BetsContainer />
+          </Route>
+          <Route exact path='/bets/:id'>
+            <BetsContainer />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }

@@ -12,11 +12,12 @@ export default function Signup ({ handleLogin }) {
     e.preventDefault()
 
     let form = new FormData(document.querySelector('#signup-form'))
-    let obj = {}
 
-    let keys = Array.from(form.keys()) 
-    let values = Array.from(form.values())
-    keys.forEach((key, i) => obj = { ...obj, [key]: values[i] })
+    let obj = {
+      name: form.get('name'), 
+      username: form.get('username'), 
+      password: form.get('password')
+    }
 
     let req = await fetch('/signup', {
       method: 'POST',
@@ -25,22 +26,22 @@ export default function Signup ({ handleLogin }) {
     })
 
     if (req.ok) {
-      let id = await req.json()
+
       handleLogin(true)
-      history.push(`/user/${id}`)
+      history.push('/user')
+
     } else {
-      let err = await req.json()
+      let res = await req.json()
 
-      console.log(err)
+      let tempArr = []
 
-      const tempArr = []
-
-      for(let i in err.errors){
-        let message = `${i}: ${err.errors[i]}`
+      for(let i in res.errors){
+        let message = `${i}: ${res.errors[i]}`
         tempArr.push(message)
       }
 
       setErrors(tempArr)
+
     }
 
   }    

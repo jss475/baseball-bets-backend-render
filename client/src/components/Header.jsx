@@ -2,6 +2,8 @@ import { Nav, Navbar, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useHistory } from 'react-router-dom'
 
+const IMAGE_URL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZbLwrIgZHu-XANoCFGEVWS0I5Bp9fYbGDEb4QAsLdW_Rlpto98lb0YAEiHx7P7IivKy4&usqp=CAU"
+
 export default function Header ({ isLoggedin, handleLogin }) {
 
   let history = useHistory()
@@ -22,7 +24,7 @@ export default function Header ({ isLoggedin, handleLogin }) {
           <Navbar.Brand href="/">
             <img
               alt="Logo"
-              src=""
+              src={IMAGE_URL}
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -38,15 +40,17 @@ export default function Header ({ isLoggedin, handleLogin }) {
             <LinkContainer to='/bets' exact>
               <Nav.Link href='#action2'>bets</Nav.Link>
             </LinkContainer>
-
+            <LinkContainer to='/players' exact>
+              <Nav.Link href='#action3'>players</Nav.Link>
+            </LinkContainer>
             {!isLoggedin ? 
               <>
                 <LinkContainer to='/login' exact>
-                  <Nav.Link href='#action3'>login</Nav.Link>
+                  <Nav.Link href='#action4'>login</Nav.Link>
                 </LinkContainer>
 
                 <LinkContainer to='/signup' exact>
-                  <Nav.Link href='#action4'>signup</Nav.Link>
+                  <Nav.Link href='#action5'>signup</Nav.Link>
                 </LinkContainer> 
               </>
               : <Button onClick={handleClick}>logout</Button>}
