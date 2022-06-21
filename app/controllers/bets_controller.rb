@@ -1,5 +1,6 @@
 class BetsController < ApplicationController
 
+
     def index
         render json: Bet.all, status: :ok
     end
@@ -38,5 +39,7 @@ class BetsController < ApplicationController
     def bet_params
         params.permit(:user_id, :player_id, :win, :price, :description, :odds, :current_bets)
     end
+
+
 
 end
