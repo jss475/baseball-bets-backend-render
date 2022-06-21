@@ -28,7 +28,7 @@ export default function Login ({ handleLogin }) {
 
     } else {
       let error = await req.json()
-      console.log('error:', error)
+      alert('error:', error)
     }
   }
  
