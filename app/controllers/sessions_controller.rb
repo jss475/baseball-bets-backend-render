@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
 
-
   def login
     user = User.find_by(username: params[:username])
     
@@ -12,13 +11,23 @@ class SessionsController < ApplicationController
     else
 
       render json: { error: 'wrong username or password' }, status: :unauthorized 
-
+    
     end
 
-  end
+        
+    def logout
+        session.delete :user_id
+        head :no_content
+    end
+      
+    private
 
-  def logout
-    session.delete :user_id
-  end
+#     def is_authorized?
+#         render json: { error: 'not authorized' } unless current_user
+#     end
+
+#     def current_user
+#         User.find(session[:user_id])
+#     end
 
 end
