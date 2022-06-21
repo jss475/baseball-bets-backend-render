@@ -1,5 +1,7 @@
 class UserBetsController < ApplicationController
 
+    before_action :authorize, only: [:create, :destroy]
+
     def index
         render json: UserBet.all, status: :ok
     end
@@ -10,7 +12,9 @@ class UserBetsController < ApplicationController
     end
 
     def create
-        ub = UserBet.create!(ub_params)
+        user = User.find(session[:user_id])
+
+        ub = user.user_bets.create!(ub_params)
         render json: ub, status: :created
     end
 
@@ -24,5 +28,11 @@ class UserBetsController < ApplicationController
 
     def ub_params
         params.permit(:user_id, :bet_id, :money_bet)
+    end
+
+    # Create authorization for placing a bet
+    def authorize
+
+        return render json: {error: "Not authorized"} unless session.include? :user_id
     end
 end

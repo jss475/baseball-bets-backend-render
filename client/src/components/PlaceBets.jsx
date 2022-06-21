@@ -4,27 +4,27 @@ import {useEffect, useRef} from 'react'
 function PlaceBets({bet}){
     const history = useHistory()
     const refContainer = useRef(history.location.state.data)
-    //access the data pushed by history
-    // useEffect(()=> {
-    //     data = history.location.state.data
-    //     //refactor data pushed by the history
-        
-    // },[])
+
 
     
-    const { win, odds, description, current_bets, player} = refContainer.current
-   
+    const { win, odds, description, current_bets, player, id} = refContainer.current
+   console.log(`Bet Id: ${id}`)
     function handleBetSubmit(e){
+        debugger
         e.preventDefault()
-        console.log(e)
-        // const configObj = {
-        //     method: 'UPDATE',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify()
-        // }
-        // fetch('/user_bets',configObj)
+        const configObj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                bet_id: id,
+                // user_id: 1, //set to 1 for TEST PURPOSES ONLY. PLEASE UPDATE ONCE YOU HAVE LOGIN
+                money_bet: +e.target.money_bet.value})
+        }
+        fetch('/user_bets',configObj)
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
 
     return(
