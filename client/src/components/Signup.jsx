@@ -15,7 +15,7 @@ export default function Signup ({ handleLogin }) {
     let values = Array.from(form.values())
     keys.forEach((key, i) => obj = { ...obj, [key]: values[i] })
 
-    let req = await fetch('/users', {
+    let req = await fetch('/signup', {
       method: 'POST',
       headers: {'content-type': 'application/json'},
       body: JSON.stringify(obj)
