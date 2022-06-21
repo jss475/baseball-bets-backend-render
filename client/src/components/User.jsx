@@ -11,6 +11,8 @@ export default function User () {
     const getUser = async () => {
       let req = await fetch(`/users/${id}`) 
 
+      console.log(req.ok)
+
       if (req.ok) {
         let res = await req.json() 
         setUser(res)

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :authorize, only: [:show]
+  #before_action :authorize, only: [:show]
 
   wrap_parameters format: []
     
