@@ -33,12 +33,12 @@ puts "Done creating players"
 #Creating bets
 puts "Creating bets..."
 
-Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 50, description: Faker::Restaurant.description, current_bets: rand(1..10000))
-Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 30, description: Faker::Restaurant.description, current_bets: rand(1..10000))
-Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 20, description: Faker::Restaurant.description, current_bets: rand(1..10000))
-Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 10, description: Faker::Restaurant.description, current_bets: rand(1..10000))
-Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 2, description: Faker::Restaurant.description, current_bets: rand(1..10000))
-Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 5, description: Faker::Restaurant.description, current_bets: rand(1..10000))
+Bet.create(player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 50, description: Faker::Restaurant.description, current_bets: rand(1..10000))
+Bet.create(player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 30, description: Faker::Restaurant.description, current_bets: rand(1..10000))
+Bet.create(player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 20, description: Faker::Restaurant.description, current_bets: rand(1..10000))
+Bet.create(player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 10, description: Faker::Restaurant.description, current_bets: rand(1..10000))
+Bet.create(player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 2, description: Faker::Restaurant.description, current_bets: rand(1..10000))
+Bet.create(player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: 5, description: Faker::Restaurant.description, current_bets: rand(1..10000))
 
 puts "Done creating bets!"
 
