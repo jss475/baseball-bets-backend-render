@@ -12,10 +12,21 @@ class UserBetsController < ApplicationController
     end
 
     def create
+
         user = User.find(session[:user_id])
 
         ub = user.user_bets.create!(ub_params)
-        render json: ub, status: :created
+
+        if ub.winnings 
+
+          render json: { current_bets: ub.bet.current_bets, message: "great success" }
+
+        elsif
+
+          render json: { current_bets: ub.bet.current_bets, message: 'swing and a miss' }
+
+        end
+
     end
 
     def destroy
