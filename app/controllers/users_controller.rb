@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   wrap_parameters format: []
-  before_action :is_authorized?, only: [:show, :index]
-  skip_before_action :is_authorized?, only: [:create]
+
+  before_action :authorized, only: [:index, :show]
 
     
     def index
@@ -14,25 +14,19 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create(user_params)
-        if user.valid?
-            render json: user, status: :created
-        else
-            render json: {error: user.errors.full_messages}, status: :unprocessable_entity
-        end
+        user = User.create!(user_params)
+        session[:user_id] = user.id
+        render json: user.id, status: :created
     end
 
     private
 
     def user_params
-        params.permit(:id, :name, :username, :password, :password_digest, :money, :winnings)
+        params.permit(:name, :username, :password, :password_digest, :money, :winnings)
     end
 
-    def is_authorized?
-        render json: { error: 'not authorized' } unless current_user
+    def authorized
+        render json: { error: 'not authorized' }, status: :unauthorized unless session.include? :user_id
     end
 
-    def current_user
-        User.find(session[:user_id])
-    end
 end
