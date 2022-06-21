@@ -1,7 +1,10 @@
-import { Form, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 export default function Signup ({ handleLogin }) {
+
+  const [errors, setErrors] = useState([])
 
   let history = useHistory()
   
@@ -25,11 +28,30 @@ export default function Signup ({ handleLogin }) {
       let id = await req.json()
       handleLogin(true)
       history.push(`/user/${id}`)
+    } else {
+      let err = await req.json()
+
+      console.log(err)
+
+      const tempArr = []
+
+      for(let i in err.errors){
+        let message = `${i}: ${err.errors[i]}`
+        tempArr.push(message)
+      }
+
+      setErrors(tempArr)
     }
 
   }    
 
+
+
   return (
+    <>
+      <div className='mt-2'>
+        {errors.map((err, i) => <p key={i}>{err}</p>)}
+      </div>
       <Form id='signup-form' onSubmit={handleSubmit}>
 
         <Form.Group className='my-3'>
@@ -61,5 +83,6 @@ export default function Signup ({ handleLogin }) {
         </Button>
 
       </Form>
+    </>
   )
 }

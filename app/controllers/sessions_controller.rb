@@ -14,13 +14,13 @@ class SessionsController < ApplicationController
     
     end
 
+  end
         
     def logout
         session.delete :user_id
         head :no_content
     end
       
-    private
 
 #     def is_authorized?
 #         render json: { error: 'not authorized' } unless current_user

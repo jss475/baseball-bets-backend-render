@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 export default function Login ({ handleLogin }) {
+
+  const [error, setError] = useState('')
 
   let history = useHistory()
 
@@ -9,6 +12,7 @@ export default function Login ({ handleLogin }) {
     e.preventDefault()
 
     let form = new FormData(document.querySelector('#login-form')) 
+
     let obj = {}
 
     let keys = Array.from(form.keys()) 
@@ -18,7 +22,7 @@ export default function Login ({ handleLogin }) {
     let req = await fetch('/login', {
       method: 'POST',
       headers: {'content-type': 'application/json'},
-      body: JSON.stringify(obj)
+      body: JSON.stringify(form)
     })
 
     if (req.ok) {
@@ -27,13 +31,15 @@ export default function Login ({ handleLogin }) {
       history.push(`/user/${id}`)
 
     } else {
-      let error = await req.json()
-      alert('error:', error)
+      let err = await req.json()
+      setError(err)
     }
   }
  
+  console.log(error.error)
   return (
-
+    <>
+    {Object.keys(error).length > 0 ? <p>{error.error}</p> : null}
       <Form 
         id='login-form' 
         onSubmit={handleSubmit}
@@ -60,6 +66,7 @@ export default function Login ({ handleLogin }) {
         </Button>
 
       </Form>
+    </>
   )  
 }
 
