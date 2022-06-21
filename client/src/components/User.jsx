@@ -1,38 +1,31 @@
 import { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export default function User () {
   const [user, setUser] = useState({})
-  const { id } = useParams()
   const history = useHistory()
 
   useEffect(() => {
 
-    const getUser = async () => {
-      let req = await fetch(`/users/${id}`) 
+    const validateUser = async () => {
 
-      console.log(req.ok)
+      let req = await fetch('/validate_user') 
+      req.ok ? setUser(await req.json()) : history.push('/')
 
-      if (req.ok) {
-        let res = await req.json() 
-        setUser(res)
-      }
-      
-      else {
-        history.push('/home')
-      }
     }
 
-    getUser() 
+    validateUser() 
     
-  }, [history, id])
+  }, [history])
   
   
+  const{ name, money, winnings } = user 
 
   return (
     <div>
-      <p>Hello {user.name}</p>
-      <p>{id}</p>
+      <h3>Hello {name}</h3>
+      <p>{`You have: ${money} dollars`}</p> 
+      <p>{`You've won: ${winnings} dollars`}</p>
     </div>
   )
 }
