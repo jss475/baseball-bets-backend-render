@@ -13,16 +13,9 @@ export default function Signup ({ handleLogin }) {
 
     let form = new FormData(document.querySelector('#signup-form'))
 
-    let obj = {
-      name: form.get('name'), 
-      username: form.get('username'), 
-      password: form.get('password')
-    }
-
     let req = await fetch('/signup', {
       method: 'POST',
-      headers: {'content-type': 'application/json'},
-      body: JSON.stringify(obj)
+      body: form 
     })
 
     if (req.ok) {
@@ -31,8 +24,8 @@ export default function Signup ({ handleLogin }) {
       history.push('/user')
 
     } else {
-      let res = await req.json()
 
+      let res = await req.json()
       let tempArr = []
 
       for(let i in res.errors){
