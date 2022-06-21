@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2022_06_21_175058) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_bets", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "bet_id"
+    t.float "money_bet"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"

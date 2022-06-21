@@ -40,4 +40,16 @@ Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::B
 Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: "2:1", description: Faker::Restaurant.description, current_bets: rand(1..10000))
 Bet.create(user_id: User.ids.sample, player_id: Player.ids.sample, win: Faker::Boolean.boolean, price: rand(1..100), odds: "5:1", description: Faker::Restaurant.description, current_bets: rand(1..10000))
 
-puts "Dont creating bets!"
+puts "Done creating bets!"
+
+#Creating user bets
+
+puts "Creating UserBets"
+UserBet.create(user_id: User.ids.sample, bet_id: Bet.ids.sample, money_bet: rand(10..1000))
+UserBet.create(user_id: User.ids.sample, bet_id: Bet.ids.sample, money_bet: rand(10..1000))
+UserBet.create(user_id: User.ids.sample, bet_id: Bet.ids.sample, money_bet: rand(10..1000))
+UserBet.create(user_id: User.ids.sample, bet_id: Bet.ids.sample, money_bet: rand(10..1000))
+UserBet.create(user_id: User.ids.sample, bet_id: Bet.ids.sample, money_bet: rand(10..1000))
+UserBet.create(user_id: User.ids.sample, bet_id: Bet.ids.sample, money_bet: rand(10..1000))
+UserBet.create(user_id: User.ids.sample, bet_id: Bet.ids.sample, money_bet: rand(10..1000))
+puts "Done creating userbets!"

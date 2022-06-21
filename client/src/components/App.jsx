@@ -5,6 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import User from './User'
 import Players from './Players'
+import BetsContainer from './BetsContainer'
 
 function App() {
   const [isLoggedin, setLoggedin] = useState(() => {
@@ -21,7 +22,6 @@ function App() {
     <div className="App">
       <Header isLoggedin={isLoggedin} handleLogin={handleLogin}/>
       <div className='container'> 
-
         <Switch>
           <Route exact path='/'>
             Welcome to Baseball Bets
@@ -45,10 +45,12 @@ function App() {
             hey here's a player sick
           </Route>
           <Route exact path='/bets'>
-            oh so many bets
+            <BetsContainer />
+          </Route>
+          <Route exact path='/bets/:id'>
+            <BetsContainer />
           </Route>
         </Switch>
-
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
+  
   #namespace :api do
     resources :players, only: [:index, :show]
     resources :bets
     resources :users, only: [:index]
+    resources :user_bets, only: [:index, :show, :create, :destroy]
 
     get '/validate_user', to: 'users#show'
     post '/signup', to: "users#create"
