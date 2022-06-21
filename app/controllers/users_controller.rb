@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :is_authorized?, only: [:show]
+  before_action :authorize, only: [:show]
     
     #def index
         #render json: User.all, status: :ok

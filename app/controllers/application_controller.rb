@@ -5,15 +5,13 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   # rescue_from ActionController::UnpermittedParameters, with: :unpermitted_parameters
 
-  def current_user
-    User.find(session[:user_id])
-  end
-
-  def is_authorized?
-    render json: { error: 'not authorized' } unless current_user
+  def authorize 
+    render json { error: 'wrong username or password'} unless session.include? :user_id
   end
 
   private
+  
+
 
   def record_not_found(exception)
     render json: {error: exception}, status: :not_found
