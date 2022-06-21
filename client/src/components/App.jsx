@@ -37,7 +37,7 @@ function App() {
             <Signup handleLogin={handleLogin}/>
           </Route>
           <Route exact path='/user'>
-            <User />
+            <User handleLogin={handleLogin} />
           </Route>
           <Route exact path='/players'>
             <Players />
