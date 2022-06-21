@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
+  
   #namespace :api do
     resources :players, only: [:index, :show]
     resources :bets
     resources :users, only: [:index, :show]
+    resources :user_bets, only: [:index, :show, :create, :destroy]
 
     post '/login', to: 'sessions#login'
     delete '/logout', to: "sessions#logout"
