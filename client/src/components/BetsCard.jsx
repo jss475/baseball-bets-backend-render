@@ -8,9 +8,9 @@ function BetsCard({ bet, show, handleSetShow, handleAddBet}){
     const { pathname } = useLocation()
 
     function handleBetClick(){
-        //pushes the website to a new page while also sending the bet prop through the state key of history
-        //history.push({pathname:'/place_bets', state: {data: bet}})
-      console.log(pathname)
+      
+      //pushes the website to a new page while also sending the bet prop through the state key of history
+      //history.push({pathname:'/place_bets', state: {data: bet}})
       if(pathname !== `/bets/${id}`){
         handleSetShow()
         history.push(`/bets/${id}`)

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import BetsCard from './BetsCard'
 
 
@@ -8,14 +8,11 @@ function BetsContainer(){
     const [allBets, setAllBets] = useState([])
     const [showBets, setShowBets] = useState([])
     const [show, setShow] = useState(false)
+    
+    //const pageRenderCount = useRef(0)
 
     let { id } = useParams()
 
-    //if the id doesn't exist give it a value of 0
-    //if(!id){
-        //id = 0
-    //}
-    
   const handleAddBet = (id, newCb, userBet) => {
     const updatedBets = allBets.map(bet => {
       if(bet.id === +id){
@@ -30,7 +27,7 @@ function BetsContainer(){
 
   }
     //fetch all the bets data
-    useEffect(()=> {
+    useEffect( () => {
         const getBets = async () => {
             let req = await fetch('/bets')
     
@@ -48,17 +45,23 @@ function BetsContainer(){
   useEffect(() => {
 
     if(allBets.length === 0) return
-      console.log(show, id)
-      if(!show){
-        setShowBets([...allBets])
-        } else {
-            setShowBets(allBets.filter(bet => bet.id === +id))
-        }
 
-    }, [allBets, show])
+    if(!id || !show){
+
+      setShowBets([...allBets])
+      if (show) handleSetShow()
+
+    } else {
+      setShowBets(allBets.filter(bet => bet.id === +id))
+    }
+
+  }, [allBets, show, id])
    
    
   const handleSetShow = () => setShow(prev => !prev)
+
+  //pageRenderCount.current += 1
+  //console.log(pageRenderCount.current)
 
     return(
         <>
