@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :players, only: [:index, :show]
     resources :bets
     resources :users, only: [:index]
-    resources :user_bets, only: [:index, :show, :create, :destroy]
+    resources :user_bets, only: [:index, :show, :create, :destroy, :update]
 
     get '/validate_user', to: 'users#show'
     post '/signup', to: "users#create"
