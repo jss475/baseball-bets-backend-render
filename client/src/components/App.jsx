@@ -51,9 +51,9 @@ function App() {
           <Route exact path='/bets/:id'>
             <BetsContainer />
           </Route>
-          <Route exact path='/place_bets'>
-            <PlaceBets />
-          </Route>
+          {/*<Route exact path='/place_bets'>*/}
+            {/*<PlaceBets />*/}
+          {/*</Route>*/}
         </Switch>
       </div>
     </div>

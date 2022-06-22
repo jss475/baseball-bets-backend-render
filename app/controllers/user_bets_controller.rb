@@ -17,15 +17,7 @@ class UserBetsController < ApplicationController
 
         ub = user.user_bets.create!(ub_params)
 
-        if ub.winnings 
-
-          render json: { current_bets: ub.bet.current_bets, message: "great success" }
-
-        elsif
-
-          render json: { current_bets: ub.bet.current_bets, message: 'swing and a miss' }
-
-        end
+        render json: ub, serializer: AddUserBetSerializer, status: :created
 
     end
 
@@ -45,5 +37,6 @@ class UserBetsController < ApplicationController
     def authorize
 
         return render json: {error: "Not authorized"} unless session.include? :user_id
+
     end
 end

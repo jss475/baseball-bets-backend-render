@@ -6,14 +6,29 @@ import BetsCard from './BetsCard'
 function BetsContainer(){
 
     const [allBets, setAllBets] = useState([])
-    let {id } = useParams()
+    const [showBets, setShowBets] = useState([])
+    const [show, setShow] = useState(false)
+
+    let { id } = useParams()
 
     //if the id doesn't exist give it a value of 0
-    if(!id){
-        id = 0
-    }
+    //if(!id){
+        //id = 0
+    //}
     
+  const handleAddBet = (id, newCb, userBet) => {
+    const updatedBets = allBets.map(bet => {
+      if(bet.id === +id){
+        bet.current_bets = newCb  
+        bet.user_bets.push(userBet)
+      } else {
+        return bet
+      }
+    })
 
+    setAllBets(updatedBets)
+
+  }
     //fetch all the bets data
     useEffect(()=> {
         const getBets = async () => {
@@ -27,27 +42,34 @@ function BetsContainer(){
             }
         }
         getBets()
-        
     },[])
 
-    // useEffect(()=> {
-    //     fetch('/bets')
-    //         .then(res => res.json())
-    //         .then(data => setAllBets(data))
-    // },[])
-   let filteredArr = []
-    if(allBets.length > 0){
-        if(id===0){
-            filteredArr = allBets
-        }else{
-            filteredArr = allBets.filter(bet => bet.id === +id)
+
+  useEffect(() => {
+
+    if(allBets.length === 0) return
+      console.log(show, id)
+      if(!show){
+        setShowBets([...allBets])
+        } else {
+            setShowBets(allBets.filter(bet => bet.id === +id))
         }
-    }
+
+    }, [allBets, show])
    
+   
+  const handleSetShow = () => setShow(prev => !prev)
+
     return(
         <>
-            {filteredArr.map(bet => {
-                return <BetsCard key={bet.id} bet={bet} />
+            {showBets.map(bet => {
+                return <BetsCard 
+                        key={bet.id} 
+                        bet={bet} 
+                        show={show}
+                        handleSetShow={handleSetShow}
+                        handleAddBet={handleAddBet}
+                      />
             })}
         </>
     )

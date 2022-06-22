@@ -1,14 +1,15 @@
 import {useHistory} from 'react-router-dom'
 import {useEffect, useRef} from 'react'
 
-function PlaceBets({bet}){
+function PlaceBets(){
     const history = useHistory()
     const refContainer = useRef(history.location.state.data)
+    //const [currentBets, setCurrentBets] = useState(refContainer.current.current_bets)
+    console.log(refContainer)
 
-
-    
     const { win, odds, description, current_bets, player, id} = refContainer.current
-   console.log(`Bet Id: ${id}`)
+    console.log(`Bet Id: ${id}`)
+
     function handleBetSubmit(e){
         e.preventDefault()
         const configObj = {
@@ -18,13 +19,14 @@ function PlaceBets({bet}){
             },
             body: JSON.stringify({
                 bet_id: id,
-                // user_id: 1, //set to 1 for TEST PURPOSES ONLY. PLEASE UPDATE ONCE YOU HAVE LOGIN
                 money_bet: +e.target.money_bet.value})
         }
-        fetch('/user_bets',configObj)
+        fetch('/user_bets', configObj)
             .then(res => res.json())
             .then(data => console.log(data))
     }
+
+    
 
     return(
         <>

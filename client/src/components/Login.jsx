@@ -13,19 +13,8 @@ export default function Login ({ handleLogin }) {
 
     let form = new FormData(document.querySelector('#login-form')) 
 
-    {/*let obj = { */}
-      {/*username: form.get('username'), */}
-      {/*password: form.get('password') */}
-    {/*}*/}
-
-    //let keys = Array.from(form.keys()) 
-    //let values = Array.from(form.values())
-    //keys.forEach((key, i) => obj = { ...obj, [key]: values[i] })
-
     let req = await fetch('/login', {
       method: 'POST',
-      //headers: {'content-type': 'application/json'},
-      //body: JSON.stringify(obj)
       body: form
     })
 

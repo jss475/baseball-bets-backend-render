@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     def show
         user = User.find(session[:user_id])
-        render json: user, status: :ok
+        render json: user, include: ['user_bets.bet'], status: :ok
     end
 
     def create
