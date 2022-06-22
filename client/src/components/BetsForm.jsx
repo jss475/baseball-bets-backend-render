@@ -1,7 +1,7 @@
 
 import {useState, useEffect} from 'react'
 
-function BetsForm({ bet, show, handleSetShow, handleAddBet}){
+function BetsForm({ bet, handleAddBet, handleDeleteBet}){
     
     const [betFormSubmit, setBetFormSubmit] = useState(false)
     const [newUserBet, setNewUserBet] = useState({})
@@ -19,6 +19,7 @@ function BetsForm({ bet, show, handleSetShow, handleAddBet}){
                 bet_id: bet.id,
                 money_bet: +e.target.money_bet.value})
         }
+
         fetch('/user_bets', configObj)
             .then(res => res.json())
             .then(data => {
@@ -49,28 +50,27 @@ function BetsForm({ bet, show, handleSetShow, handleAddBet}){
     }
 
     //handle the delete bet
-    function handleDeleteBet(e){
-        e.preventDefault()
-        console.log(newUserBet.id)
+    function handleDeleteClick(){
+
         const configObj = {
             method: 'DELETE'
         }
 
         fetch(`/user_bets/${newUserBet.id}`, configObj)
             .then(res => res.json())
-            .then(data => console.log(data.current_bets))
-        
-        setNewUserBet()
+            .then(data => handleDeleteBet(data))
     }
 
     //timer useEffect for toggling the update and delete button for the bet
     useEffect(()=> {
 
         if(betFormSubmit){
-            const timer = setTimeout(()=> {
-                setBetFormSubmit(betFormSubmit => !betFormSubmit)
-            },5000)
-            return () => clearTimeout(timer)
+
+          const timer = setTimeout(()=> {
+            setBetFormSubmit(betFormSubmit => !betFormSubmit) 
+          },5000)
+
+          return () => clearTimeout(timer)
         }
        
     },[betFormSubmit])
@@ -96,7 +96,7 @@ function BetsForm({ bet, show, handleSetShow, handleAddBet}){
                     </label>
                     <button type="submit">Update Bet</button>
                 </form>
-                <button onClick={handleDeleteBet} type="submit">Delete Bet</button>
+              <button onClick={handleDeleteClick} type="submit">Delete Bet</button>
             </>
             
             

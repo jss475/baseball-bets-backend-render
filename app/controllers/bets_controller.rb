@@ -2,7 +2,7 @@ class BetsController < ApplicationController
 
 
     def index
-      render json: Bet.all, include: ['player', 'user_bets.user'], status: :ok
+      render json: Bet.all, status: :ok
     end
 
     def show

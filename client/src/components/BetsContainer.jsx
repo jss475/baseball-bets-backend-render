@@ -13,25 +13,37 @@ function BetsContainer(){
     const [show, setShow] = useState(() => {
       return id ? true : false
     })
-    
-    //const pageRenderCount = useRef(0)
 
     //newCb = current_bets of the bet and userBet is the userbet instance that was created
   const handleAddBet = (id, newCb, userBet) => {
 
     const updatedBets = allBets.map(bet => {
+
       if(bet.id === +id){
+
         bet.current_bets = newCb  
         bet.user_bets.push(userBet)
         return bet
+
       } else {
         return bet
       }
-  })
+    
+    })
 
-    setAllBets(updatedBets)
+    setAllBets(updatedBets)  
 
   }
+
+    const handleDeleteBet = (newBet) => {
+
+      const updatedBets = allBets.map(bet => newBet.id === bet.id ? newBet : bet)
+
+      setAllBets(updatedBets)
+    }
+
+    console.log(allBets)
+
     //fetch all the bets data
     useEffect(() => {
         const getBets = async () => {
@@ -66,9 +78,6 @@ function BetsContainer(){
    
   const handleSetShow = () => setShow(prev => !prev)
 
-  //pageRenderCount.current += 1
-  //console.log(pageRenderCount.current)
-
     return(
         <>
             {showBets.map(bet => {
@@ -78,6 +87,7 @@ function BetsContainer(){
                         show={show}
                         handleSetShow={handleSetShow}
                         handleAddBet={handleAddBet}
+                        handleDeleteBet={handleDeleteBet}
                       />
             })}
         </>

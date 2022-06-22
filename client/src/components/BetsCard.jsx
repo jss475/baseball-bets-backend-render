@@ -1,7 +1,7 @@
 import { useHistory, useLocation } from 'react-router-dom'
 import BetsForm from './BetsForm'
 
-function BetsCard({ bet, show, handleSetShow, handleAddBet}){
+function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet}){
     //refactor the bet prop for the properties needed
     const { id, win, odds, description, current_bets, player } = bet
     //set up the useHistory to push to new form
@@ -30,9 +30,8 @@ function BetsCard({ bet, show, handleSetShow, handleAddBet}){
 
             {!show ? <button onClick={handleBetClick}>Place Bet</button> : null}
             {show ? <BetsForm bet={bet}
-                    show={show}
-                    handleSetShow={handleSetShow}
                     handleAddBet={handleAddBet}
+                    handleDeleteBet={handleDeleteBet}
             /> : null}
         </>
     )
