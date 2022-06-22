@@ -1,14 +1,20 @@
-import {useHistory} from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
-function BetsCard({bet}){
+function BetsCard({ bet, show, handleSetShow, handleAddBet}){
     //refactor the bet prop for the properties needed
-    const { win, odds, description, current_bets, player} = bet
+    const { id, win, odds, description, current_bets, player } = bet
     //set up the useHistory to push to new form
     const history = useHistory()
+    const { pathname } = useLocation()
 
     function handleBetClick(){
         //pushes the website to a new page while also sending the bet prop through the state key of history
-        history.push({pathname:'/place_bets', state: {data: bet}})
+        //history.push({pathname:'/place_bets', state: {data: bet}})
+      console.log(pathname)
+      if(pathname !== `/bets/${id}`){
+        handleSetShow()
+        history.push(`/bets/${id}`)
+      }
     }
     
     return (

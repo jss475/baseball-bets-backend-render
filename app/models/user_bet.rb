@@ -24,4 +24,15 @@ class UserBet < ApplicationRecord
 
   end   
 
+  def message 
+    
+    if bet.win
+      'you hit it out of the park'
+
+    else
+      'swing and a miss'
+    end
+
+  end
+
 end

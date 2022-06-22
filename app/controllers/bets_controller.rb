@@ -2,7 +2,7 @@ class BetsController < ApplicationController
 
 
     def index
-        render json: Bet.all, status: :ok
+      render json: Bet.all, include: ['player', 'user_bets.user'], status: :ok
     end
 
     def show
@@ -13,11 +13,6 @@ class BetsController < ApplicationController
     def create
         bet = Bet.create!(bet_params)
         render json: bet, status: :created
-        # if bet.valid?
-        #     render json: bet, status: :created
-        # else
-        #     render json: {error: bet.errors}, status: :unprocessable_entity
-        # end
     end
 
     def update

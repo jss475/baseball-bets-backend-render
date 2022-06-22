@@ -5,6 +5,8 @@ export default function User ({ handleLogin }) {
   const [user, setUser] = useState({})
   const history = useHistory()
 
+  console.log(user)
+
   useEffect(() => {
 
     //console.log("it's happening")
@@ -34,6 +36,7 @@ export default function User ({ handleLogin }) {
 
   return (
     <div>
+      
       <h3>Hello {name}</h3>
       <p>{`You have: ${money} dollars`}</p> 
       <p>{`You've won: ${winnings} dollars`}</p>
