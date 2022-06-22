@@ -28,8 +28,8 @@ function BetsContainer(){
         return bet
       }
   })
-    console.log(updatedBets)
-    // setAllBets(updatedBets)
+
+    setAllBets(updatedBets)
 
   }
     //fetch all the bets data
