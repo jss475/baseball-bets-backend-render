@@ -1,4 +1,4 @@
-import { Nav, Navbar, Button } from 'react-bootstrap'
+import { Container, Nav, Navbar, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useHistory } from 'react-router-dom'
 
@@ -20,7 +20,7 @@ export default function Header ({ isLoggedin, handleLogin }) {
   return (
     <>
       <Navbar bg="primary" variant="dark">
-        {/*<Container>*/}
+        <Container>
           <Navbar.Brand href="/">
             <img
               alt="Logo"
@@ -56,7 +56,7 @@ export default function Header ({ isLoggedin, handleLogin }) {
               : <Button onClick={handleClick}>logout</Button>}
           </Nav>
 
-        {/*</Container>*/}
+        </Container>
       </Navbar> 
     </>
   )

@@ -14,10 +14,10 @@ class UserBetsController < ApplicationController
     def create
 
         user = User.find(session[:user_id])
-
         ub = user.user_bets.create!(ub_params)
         # adding a way to increase the current_bets of the bet/updating it by the money_bet
         ub.winnings
+
         render json: ub, status: :created
 
     end
@@ -27,7 +27,6 @@ class UserBetsController < ApplicationController
         ub.remove_winnings
         bet = ub.bet
         ub.destroy
-        # head :no_content
         render json: bet
     end
 
