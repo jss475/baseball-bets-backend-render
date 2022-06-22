@@ -17,7 +17,7 @@ class UserBetsController < ApplicationController
 
         ub = user.user_bets.create!(ub_params)
 
-        render json: ub, serializer: AddUserBetSerializer, status: :created
+        render json: ub, status: :created
 
     end
 
