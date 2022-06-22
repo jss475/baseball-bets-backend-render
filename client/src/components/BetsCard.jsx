@@ -1,4 +1,5 @@
 import { useHistory, useLocation } from 'react-router-dom'
+import BetsForm from './BetsForm'
 
 function BetsCard({ bet, show, handleSetShow, handleAddBet}){
     //refactor the bet prop for the properties needed
@@ -27,7 +28,12 @@ function BetsCard({ bet, show, handleSetShow, handleAddBet}){
             <p>Current bets: ${current_bets}</p>
             <p>Did the bet win? {win ? "Yes!" : "No!"}</p>
 
-            <button onClick={handleBetClick}>Place Bet</button>
+            {!show ? <button onClick={handleBetClick}>Place Bet</button> : null}
+            {show ? <BetsForm bet={bet}
+                    show={show}
+                    handleSetShow={handleSetShow}
+                    handleAddBet={handleAddBet}
+            /> : null}
         </>
     )
 }

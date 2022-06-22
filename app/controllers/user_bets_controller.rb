@@ -27,6 +27,12 @@ class UserBetsController < ApplicationController
         head :no_content
     end
 
+    def update
+        ub = UserBet.find(params[:id])
+        ub.update!(ub_params)
+        render json: ub, serializer: AddUserBetSerializer, status: :ok
+    end
+
     private
 
     def ub_params
