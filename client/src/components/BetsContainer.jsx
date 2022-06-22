@@ -21,13 +21,13 @@ function BetsContainer(){
       } else {
         return bet
       }
-    })
+  })
 
     setAllBets(updatedBets)
 
   }
     //fetch all the bets data
-    useEffect( () => {
+    useEffect(() => {
         const getBets = async () => {
             let req = await fetch('/bets')
     
