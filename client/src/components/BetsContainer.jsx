@@ -7,11 +7,14 @@ function BetsContainer(){
 
     const [allBets, setAllBets] = useState([])
     const [showBets, setShowBets] = useState([])
-    const [show, setShow] = useState(false)
-    
-    //const pageRenderCount = useRef(0)
 
     let { id } = useParams()
+
+    const [show, setShow] = useState(() => {
+      return id ? true : false
+    })
+    
+    //const pageRenderCount = useRef(0)
 
   const handleAddBet = (id, newCb, userBet) => {
     const updatedBets = allBets.map(bet => {
