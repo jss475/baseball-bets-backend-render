@@ -21,11 +21,14 @@ function BetsForm({ bet, show, handleSetShow, handleAddBet}){
         }
         fetch('/user_bets', configObj)
             .then(res => res.json())
-            .then(data => setNewUserBet(data))
+            .then(data => {
+                setNewUserBet(data)
+                handleAddBet(data.bet.id, data.bet.current_bets, data)
+            })
 
         setBetFormSubmit(betFormSubmit => !betFormSubmit)
     }
-
+    
     //handle the update bet
 
     function handleUpdateBet(e){
@@ -47,13 +50,17 @@ function BetsForm({ bet, show, handleSetShow, handleAddBet}){
 
     //handle the delete bet
     function handleDeleteBet(e){
-        debugger
         e.preventDefault()
+        console.log(newUserBet.id)
         const configObj = {
             method: 'DELETE'
         }
 
         fetch(`/user_bets/${newUserBet.id}`, configObj)
+            .then(res => res.json())
+            .then(data => console.log(data.current_bets))
+        
+        setNewUserBet()
     }
 
     //timer useEffect for toggling the update and delete button for the bet

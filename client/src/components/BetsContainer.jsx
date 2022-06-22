@@ -16,17 +16,20 @@ function BetsContainer(){
     
     //const pageRenderCount = useRef(0)
 
+    //newCb = current_bets of the bet and userBet is the userbet instance that was created
   const handleAddBet = (id, newCb, userBet) => {
+
     const updatedBets = allBets.map(bet => {
       if(bet.id === +id){
         bet.current_bets = newCb  
         bet.user_bets.push(userBet)
+        return bet
       } else {
         return bet
       }
   })
-
-    setAllBets(updatedBets)
+    console.log(updatedBets)
+    // setAllBets(updatedBets)
 
   }
     //fetch all the bets data
