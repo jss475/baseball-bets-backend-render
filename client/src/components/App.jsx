@@ -6,7 +6,7 @@ import Signup from './Signup'
 import User from './User'
 import Players from './Players'
 import BetsContainer from './BetsContainer'
-import PlaceBets from './PlaceBets'
+
 
 function App() {
   const [isLoggedin, setLoggedin] = useState(() => {
@@ -43,7 +43,7 @@ function App() {
             <Players />
           </Route>
           <Route exact path='/players/:id'>
-            hey here's a player sick
+            <Players />
           </Route>
           <Route exact path='/bets'>
             <BetsContainer />

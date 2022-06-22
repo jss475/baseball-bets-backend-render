@@ -59,7 +59,7 @@ function BetsContainer(){
         getBets()
     },[])
 
-
+  //added a useEffect to filter the bets based on if there is an id present or the state for clicking on the bets has changed
   useEffect(() => {
 
     if(allBets.length === 0) return
