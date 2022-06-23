@@ -1,5 +1,6 @@
 
 import {useState, useEffect} from 'react'
+import '../bets_card.css' 
 
 function BetsForm({ bet, handleAddBet, handleDeleteBet}){
     
@@ -78,29 +79,36 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet}){
     //conditional below for when the initla bet has been placed and if it has, allow the user to update and delete the bet
     return(
         <>
-            {!betFormSubmit ? 
-            <form onSubmit={handleBetSubmit}>
-                <label>
-                    How much money do you want to bet?
-                    <input type="text" name="money_bet"></input>
-                </label>
-                
-                <button type="submit">Place Bet</button>
-            </form>
-            : 
-            <>
-                <form onSubmit={handleUpdateBet}>
+            <div className="bets-form-container">
+                {!betFormSubmit ? 
+                <form className="bets-form" onSubmit={handleBetSubmit}>
                     <label>
-                        How much do you want to update your bet by?
-                        <input type="text" name="update_bet"></input>
+                        How much money do you want to bet?
+                        <input type="text" name="money_bet"></input>
                     </label>
-                    <button type="submit">Update Bet</button>
+                    <div className="bets-card-btn-container">
+                        <button className="btn btn-light btn-lg btn-block" type="submit">Place Bet</button>
+                    </div>
                 </form>
-              <button onClick={handleDeleteClick} type="submit">Delete Bet</button>
-            </>
-            
-            
-            }
+                : 
+                <>
+                    <form className="bets-form" onSubmit={handleUpdateBet}>
+                        <label>
+                            How much do you want to update your bet by?
+                            <input type="text" name="update_bet"></input>
+                        </label>
+                        <div className="bets-card-btn-container">
+                            <button className="btn btn-light btn-lg btn-block" type="submit">Update Bet</button>
+                        </div>
+                    </form>
+                <div className="bets-card-btn-container">
+                    <button className="btn btn-light btn-lg btn-block" onClick={handleDeleteClick} type="submit">Delete Bet</button>
+                </div>
+                
+                </>
+                }
+            </div>
+
         </>
 
     )

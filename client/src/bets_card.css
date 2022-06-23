@@ -16,6 +16,9 @@
   font-weight: 400;
 } */
 
+label {
+    margin-bottom: 10px
+}
 
 .bets-card {
   display: inline-block;
@@ -40,9 +43,21 @@
   
 }
 
+.bets-form-container{
+    margin-left: -40%;
+    width: fit-content
+
+}
+
 .bets-card-btn-container{
     margin-left: 30%;
-    margin-bottom: 10px
+    /* margin-right: 30%; */
+    margin-bottom: 10px;
+    width: fit-content
+}
+
+.bets-form{
+    margin-left: 0
 }
 
 .bets-card:hover {
