@@ -1,5 +1,6 @@
 import {useHistory, useLocation} from 'react-router-dom'
 import BetsCardForPlayers from './BetsCardForPlayers'
+import '../player_bet_card.css'
 
 export default function PlayerCard ({ player , handleSetPlayerShow, playerShow}) {
   const { id, name, team_name, image, stats, current_bets, bets } = player
@@ -19,32 +20,36 @@ export default function PlayerCard ({ player , handleSetPlayerShow, playerShow})
   
   return ( 
     <>
-    
-      <div className="card mb-3" style={{ width: '100%'}} onClick={handleCardClick}>
-        <div className="row no-gutters">
-          <div className="col-md-4">
-            <img 
-              src="https://external-preview.redd.it/jWKncWstM5fxKth8CSIb_2RFtaR_karh35cqpWO_oUw.jpg?format=pjpg&auto=webp&s=1f8d40d3d134b94de661e6a54eefc0729e12bc65" 
-              className="card-img" 
-              alt="..."
-            />
-          </div>
-          <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">{name}</h5>
-              <ul className='card-text'>
-                <li>{`Teamname:  ${team_name}`}</li>
-                <li>{`Stats:  ${stats}`}</li>
-                <li>{`Bets:  ${current_bets}`}</li>
-              </ul> 
+
+        <div className="card mb-3" id="full-player-card" onClick={handleCardClick}>
+          <div className="row no-gutters">
+            <div className="col-md-4">
+              <img 
+                src="https://external-preview.redd.it/jWKncWstM5fxKth8CSIb_2RFtaR_karh35cqpWO_oUw.jpg?format=pjpg&auto=webp&s=1f8d40d3d134b94de661e6a54eefc0729e12bc65" 
+                className="card-img_player" 
+                id="player-card-img"
+                alt="..."
+                
+              />
+            </div>
+            <div className="col-md-8">
+              <div className="card-body">
+                <h5 className="card-title" id="player-card-title">{name}</h5>
+                <div className='card-text'>
+                  <p>{`Team: ${team_name}`}</p>
+                  <p>{`Stats: ${stats}`}</p>
+                </div> 
+              </div>
             </div>
           </div>
+        </div>  
+        <div className="card-group">
+          {playerShow ? bets.map(bet => {
+            return <BetsCardForPlayers key={bet.id} bet={bet} /> 
+          }) : null}
         </div>
-      </div>  
 
-      {playerShow ? bets.map(bet => {
-        return <BetsCardForPlayers bet={bet} /> 
-      }) : null}
+
     </>
   ) 
 }

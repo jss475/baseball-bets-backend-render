@@ -53,6 +53,10 @@ export default function Players () {
   return ( 
     //<div className='container'> 
     <>
+    <div className="all-player-cards">
+
+
+    
       {showPlayer.map(player => (
         <PlayerCard 
           key={player.id}
@@ -61,8 +65,11 @@ export default function Players () {
           handleSetPlayerShow={handleSetPlayerShow}
 
         /> 
-      ))}       
+      ))}   
+    </div>
+
     </>
+
     //</div>
   )
 
