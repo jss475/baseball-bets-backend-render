@@ -1,4 +1,4 @@
-.card-img_player_bets{
+/* .card-img_player_bets{
     opacity: 0.15;
    
 }
@@ -44,7 +44,7 @@
 #player-card-img{
     width: 100%;
     border-radius: 5px;
-    /* margin: 7px */
+    margin: 7px
 }
 
 #player-card-title{
@@ -54,4 +54,4 @@
 
 .all-player-cards{
     justify-content: center
-}
+} */

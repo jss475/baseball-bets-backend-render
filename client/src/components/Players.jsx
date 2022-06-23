@@ -53,20 +53,23 @@ export default function Players () {
   return ( 
     //<div className='container'> 
     <>
-    <div className="all-player-cards">
+    {/* <div className="all-player-cards"> */}
 
 
-    
+    <div className="player-card-center">
       {showPlayer.map(player => (
-        <PlayerCard 
-          key={player.id}
-          player={player}
-          playerShow={playerShow}
-          handleSetPlayerShow={handleSetPlayerShow}
+          <PlayerCard 
+            key={player.id}
+            player={player}
+            playerShow={playerShow}
+            handleSetPlayerShow={handleSetPlayerShow}
 
-        /> 
-      ))}   
+          /> 
+        ))}   
     </div>
+
+    {/* </div> */}
+
 
     </>
 
