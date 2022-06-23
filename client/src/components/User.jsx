@@ -28,13 +28,13 @@ export default function User({ handleLogin }) {
       <h3>Hello {name}</h3>
       <p>{`You have: ${money} dollars`}</p>
       <p>{`You've won: ${winnings} dollars`}</p>
-      {user_bets
-        ? user_bets.map((el) => (
-            <ul>
-              <li>{el.user_message}</li>
-            </ul>
-          ))
-        : null}
+      {user_bets ? (
+        <ul>
+          {user_bets.map((el, i) => (
+            <li key={i}>{el.user_message}</li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 }

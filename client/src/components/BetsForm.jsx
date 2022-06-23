@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
-import '../bets_card.css' 
+import "../bets_card.css";
 
 function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
   const [betFormSubmit, setBetFormSubmit] = useState(false);
   const [newUserBet, setNewUserBet] = useState({});
-
   //create state
   //handles the initial place bet submit
   async function handleBetSubmit(e) {
     e.preventDefault();
-
-    const form = new FormData(document.querySelector("#bet-form"));
+    const betForm = document.querySelector("#bet-form");
+    const form = new FormData(betForm);
     form.append("bet_id", bet.id);
 
     const configObj = {
@@ -24,16 +23,15 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
       const data = await req.json();
       setNewUserBet(data);
       handleAddBet(data.bet.id, data.bet.current_bets, data);
-
       setBetFormSubmit((betFormSubmit) => !betFormSubmit);
     } else {
       const error = await req.json();
       console.error(error.error);
     }
+
+    betForm.reset();
   }
-
   //handle the update bet
-
   async function handleUpdateBet(e) {
     e.preventDefault();
 
@@ -46,16 +44,16 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
       body: form,
     };
 
-    //console.log(form.get("prev_bet"));
     const req = await fetch(`/user_bets/${newUserBet.id}`, configObj);
     const data = await req.json();
+
+    console.log(data);
 
     handleAddBet(data.bet.id, data.bet.current_bets, data);
     setBetFormSubmit((betFormSubmit) => !betFormSubmit);
 
     updateBetForm.reset();
   }
-
   //handle the delete bet
   async function handleDeleteClick() {
     const configObj = {
@@ -64,7 +62,6 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
 
     const req = await fetch(`/user_bets/${newUserBet.id}`, configObj);
     const data = await req.json();
-
     handleDeleteBet(data);
     setBetFormSubmit((betFormSubmit) => !betFormSubmit);
   }
@@ -83,48 +80,51 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
   //conditional below for when the initla bet has been placed and if it has, allow the user to update and delete the bet
   return (
     <>
-      {!betFormSubmit ? (
-        <form id="bet-form" onSubmit={handleBetSubmit}>
-          <label>
-            How much money do you want to bet?
-            <input type="number" name="money_bet"></input>
-          </label>
-
-          <button type="submit">Place Bet</button>
-        </form>
-      ) : (
-        <>
-            <div className="bets-form-container">
-                {!betFormSubmit ? 
-                <form className="bets-form" onSubmit={handleBetSubmit}>
-                    <label>
-                        How much money do you want to bet?
-                        <input type="text" name="money_bet"></input>
-                    </label>
-                    <div className="bets-card-btn-container">
-                        <button className="btn btn-light btn-lg btn-block" type="submit">Place Bet</button>
-                    </div>
-                </form>
-                : 
-                <>
-                    <form className="bets-form" onSubmit={handleUpdateBet}>
-                        <label>
-                            How much do you want to update your bet by?
-                            <input type="text" name="update_bet"></input>
-                        </label>
-                        <div className="bets-card-btn-container">
-                            <button className="btn btn-light btn-lg btn-block" type="submit">Update Bet</button>
-                        </div>
-                    </form>
-                <div className="bets-card-btn-container">
-                    <button className="btn btn-light btn-lg btn-block" onClick={handleDeleteClick} type="submit">Delete Bet</button>
-                </div>
-                
-                </>
-                }
+      <div className="bets-form-container">
+        {!betFormSubmit ? (
+          <form id="bet-form" className="bets-form" onSubmit={handleBetSubmit}>
+            <label>
+              How much money do you want to bet?
+              <input type="text" name="money_bet"></input>
+            </label>
+            <div className="bets-card-btn-container">
+              <button className="btn btn-light btn-lg btn-block" type="submit">
+                Place Bet
+              </button>
             </div>
-        </>
-      )}
+          </form>
+        ) : (
+          <>
+            <form
+              id="update-bet-form"
+              className="bets-form"
+              onSubmit={handleUpdateBet}
+            >
+              <label>
+                How much do you want to update your bet by?
+                <input type="text" name="money_bet"></input>
+              </label>
+              <div className="bets-card-btn-container">
+                <button
+                  className="btn btn-light btn-lg btn-block"
+                  type="submit"
+                >
+                  Update Bet
+                </button>
+              </div>
+            </form>
+            <div className="bets-card-btn-container">
+              <button
+                className="btn btn-light btn-lg btn-block"
+                onClick={handleDeleteClick}
+                type="submit"
+              >
+                Delete Bet
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }

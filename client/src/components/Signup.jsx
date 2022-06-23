@@ -53,7 +53,7 @@ export default function Signup({ handleLogin }) {
 
         <Form.Group className="mb-3">
           <Form.Label>password:</Form.Label>
-          <Form.Control name="password" type="text" />
+          <Form.Control name="password" type="password" />
         </Form.Group>
 
         <Button variant="primary" type="submit">
