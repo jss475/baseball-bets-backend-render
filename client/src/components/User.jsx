@@ -1,45 +1,40 @@
-import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-export default function User ({ handleLogin }) {
-  const [user, setUser] = useState({})
-  const history = useHistory()
-
-  console.log(user)
+export default function User({ handleLogin }) {
+  const [user, setUser] = useState({});
+  const history = useHistory();
 
   useEffect(() => {
-
-    //console.log("it's happening")
-
     const validateUser = async () => {
-
-      let req = await fetch('/validate_user') 
+      let req = await fetch("/validate_user");
 
       if (req.ok) {
-
-        setUser(await req.json())
-
+        setUser(await req.json());
       } else {
-
-        handleLogin(false)
-        history.push('/login')
-
+        handleLogin(false);
+        history.push("/login");
       }
-    }
+    };
 
-    validateUser() 
-    
-  }, [handleLogin, history])
-  
-  
-  const{ name, money, winnings } = user 
+    validateUser();
+  }, [handleLogin, history]);
 
+  const { user_bets, name, money, winnings } = user;
+
+  console.log(user_bets);
   return (
     <div>
-      
       <h3>Hello {name}</h3>
-      <p>{`You have: ${money} dollars`}</p> 
+      <p>{`You have: ${money} dollars`}</p>
       <p>{`You've won: ${winnings} dollars`}</p>
+      {user_bets
+        ? user_bets.map((el) => (
+            <ul>
+              <li>{el.user_message}</li>
+            </ul>
+          ))
+        : null}
     </div>
-  )
+  );
 }

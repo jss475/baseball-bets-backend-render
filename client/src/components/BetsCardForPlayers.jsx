@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 
-function BetsCardForPlayers({bet}){
+function BetsCardForPlayers({ bet }) {
+  const { id, odds, description, current_bets } = bet;
 
-    const {id, odds, description, current_bets} = bet
-    
-    
-    return (
-        <>
-            <p>Description: {description}</p>
-            <p>Odds : {odds}</p>
-            <p>Current bets: ${current_bets}</p>
-        </>
-    )
+  return (
+    <>
+      <p>Description: {description}</p>
+      <p>Odds : {odds}</p>
+      <p>Current bets: ${current_bets}</p>
+    </>
+  );
 }
 
-export default BetsCardForPlayers
+export default BetsCardForPlayers;
+
