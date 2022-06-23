@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../bets_card.css' 
 
 function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
   const [betFormSubmit, setBetFormSubmit] = useState(false);
@@ -93,16 +94,35 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
         </form>
       ) : (
         <>
-          <form id="update-bet-form" onSubmit={handleUpdateBet}>
-            <label>
-              How much do you want to update your bet by?
-              <input type="number" name="money_bet"></input>
-            </label>
-            <button type="submit">Update Bet</button>
-          </form>
-          <button onClick={handleDeleteClick} type="submit">
-            Delete Bet
-          </button>
+            <div className="bets-form-container">
+                {!betFormSubmit ? 
+                <form className="bets-form" onSubmit={handleBetSubmit}>
+                    <label>
+                        How much money do you want to bet?
+                        <input type="text" name="money_bet"></input>
+                    </label>
+                    <div className="bets-card-btn-container">
+                        <button className="btn btn-light btn-lg btn-block" type="submit">Place Bet</button>
+                    </div>
+                </form>
+                : 
+                <>
+                    <form className="bets-form" onSubmit={handleUpdateBet}>
+                        <label>
+                            How much do you want to update your bet by?
+                            <input type="text" name="update_bet"></input>
+                        </label>
+                        <div className="bets-card-btn-container">
+                            <button className="btn btn-light btn-lg btn-block" type="submit">Update Bet</button>
+                        </div>
+                    </form>
+                <div className="bets-card-btn-container">
+                    <button className="btn btn-light btn-lg btn-block" onClick={handleDeleteClick} type="submit">Delete Bet</button>
+                </div>
+                
+                </>
+                }
+            </div>
         </>
       )}
     </>

@@ -11,6 +11,8 @@
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.11",
+    "node-fetch": "^3.2.6",
     "react-router-dom": "^5.3.3"
   }
 }

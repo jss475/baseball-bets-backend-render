@@ -1,5 +1,6 @@
-import { useHistory, useLocation } from "react-router-dom";
-import BetsForm from "./BetsForm";
+import { useHistory, useLocation } from 'react-router-dom'
+import BetsForm from './BetsForm'
+import '../bets_card.css'
 
 function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet }) {
   //refactor the bet prop for the properties needed
@@ -15,28 +16,51 @@ function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet }) {
       handleSetShow();
       history.push(`/bets/${id}`);
     }
-  }
 
-  return (
-    <>
-      <p>Player: {player.name}</p>
-      <p>Team: {player.team_name}</p>
-      <img src={player.image} alt="hello" />
-      <p>Description: {description}</p>
-      <p>Odds: {odds}</p>
-      <p>Current bets: ${current_bets}</p>
-      <p>Did the bet win? {win ? "Yes!" : "No!"}</p>
+    return (
+        <>
+          <div className="bets-card">  
 
-      {!show ? <button onClick={handleBetClick}>Place Bet</button> : null}
-      {show ? (
-        <BetsForm
-          bet={bet}
-          handleAddBet={handleAddBet}
-          handleDeleteBet={handleDeleteBet}
-        />
-      ) : null}
-    </>
-  );
+            <figure className="bets-card-water">
+              <div className="bets-card-img-container">
+                <img className="bets-img" src={player.image} alt = "hello"/>
+              </div>
+              
+              <figcaption className="bets-card-caption">
+                <h1 className="bets-card-name">{player.name}</h1>
+
+                <p>{description}</p>
+
+
+                <div className="bets-card-money">
+                  <h4 className="bets-card-money-child">
+                    <span className="bets-card-label">Odds</span>
+                    {odds}
+                  </h4>
+                  <h4 className="bets-card-money-child">
+                    <span className="bets-card-label">Current Bets</span>
+                    ${current_bets}
+                  </h4>
+                </div>
+              </figcaption>
+              <div className="bets-card-btn-container">
+                {!show ? <button className="btn btn-light btn-lg btn-block" onClick={handleBetClick}>Place Bet</button> : null}
+                  {show ? <BetsForm bet={bet}
+                          handleAddBet={handleAddBet}
+                          handleDeleteBet={handleDeleteBet}
+                  /> : null}
+
+              </div>
+               
+            </figure>
+          </div>
+
+
+
+
+
+        </>
+    )
 }
 
-export default BetsCard;
+export default BetsCard
