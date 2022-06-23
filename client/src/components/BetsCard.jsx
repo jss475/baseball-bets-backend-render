@@ -2,24 +2,21 @@ import { useHistory, useLocation } from 'react-router-dom'
 import BetsForm from './BetsForm'
 import '../bets_card.css'
 
+function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet }) {
+  //refactor the bet prop for the properties needed
+  const { id, win, odds, description, current_bets, player } = bet;
+  //set up the useHistory to push to new form
+  const history = useHistory();
+  const { pathname } = useLocation();
 
-function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet}){
-    //refactor the bet prop for the properties needed
-    const { id, win, odds, description, current_bets, player } = bet
-    //set up the useHistory to push to new form
-    const history = useHistory()
-    const { pathname } = useLocation()
-
-    function handleBetClick(){
-      
-      //pushes the website to a new page while also sending the bet prop through the state key of history
-      //history.push({pathname:'/place_bets', state: {data: bet}})
-      if(pathname !== `/bets/${id}`){
-        handleSetShow()
-        history.push(`/bets/${id}`)
-      }
+  function handleBetClick() {
+    //pushes the website to a new page while also sending the bet prop through the state key of history
+    //history.push({pathname:'/place_bets', state: {data: bet}})
+    if (pathname !== `/bets/${id}`) {
+      handleSetShow();
+      history.push(`/bets/${id}`);
     }
-    
+
     return (
         <>
           <div className="bets-card">  
@@ -67,4 +64,3 @@ function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet}){
 }
 
 export default BetsCard
-

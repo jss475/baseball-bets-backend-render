@@ -1,7 +1,8 @@
 import React from 'react';
 import '../player_bet_card.css'
 
-function BetsCardForPlayers({bet}){
+function BetsCardForPlayers({ bet }) {
+  const { id, odds, description, current_bets } = bet;
 
     const {odds, description, current_bets} = bet
     
@@ -22,4 +23,5 @@ function BetsCardForPlayers({bet}){
     )
 }
 
-export default BetsCardForPlayers
+export default BetsCardForPlayers;
+
