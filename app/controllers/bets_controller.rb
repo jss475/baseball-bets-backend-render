@@ -1,6 +1,5 @@
 class BetsController < ApplicationController
 
-
     def index
       render json: Bet.all, status: :ok
     end

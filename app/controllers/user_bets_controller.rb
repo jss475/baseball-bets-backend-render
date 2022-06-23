@@ -14,10 +14,11 @@ class UserBetsController < ApplicationController
     def create
 
         user = User.find(session[:user_id])
-        ub = user.user_bets.create!(ub_params)
-        # adding a way to increase the current_bets of the bet/updating it by the money_bet
-        ub.winnings
+        bet = user.user_bets.create!(ub_params)
+        bet.winnings
 
+        ub = UserBet.find(bet.id)
+        
         render json: ub, status: :created
 
     end
@@ -26,13 +27,20 @@ class UserBetsController < ApplicationController
         ub = UserBet.find(params[:id])
         ub.remove_winnings
         bet = ub.bet
+
         ub.destroy
+
         render json: bet
     end
 
     def update
-        ub = UserBet.find(params[:id])
+        user = User.find(session[:user_id]) 
+        ub = user.user_bets.last
+
         ub.update!(ub_params)
+
+        ub.update_winnings(params[:prev_bet])
+
         render json: ub, status: :ok
     end
 
