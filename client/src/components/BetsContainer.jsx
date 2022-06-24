@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BetsCard from "./BetsCard";
+import '../bets_card.css'
 
 function BetsContainer() {
   const [allBets, setAllBets] = useState([]);
@@ -66,18 +67,21 @@ function BetsContainer() {
 
   return (
     <>
-      {showBets.map((bet) => {
-        return (
-          <BetsCard
-            key={bet.id}
-            bet={bet}
-            show={show}
-            handleSetShow={handleSetShow}
-            handleAddBet={handleAddBet}
-            handleDeleteBet={handleDeleteBet}
-          />
-        );
-      })}
+      <div className="all-bets-container">
+        {showBets.map((bet) => {
+          return (
+            <BetsCard
+              key={bet.id}
+              bet={bet}
+              show={show}
+              handleSetShow={handleSetShow}
+              handleAddBet={handleAddBet}
+              handleDeleteBet={handleDeleteBet}
+            />
+          );
+        })}
+      </div>
+
     </>
   );
 }

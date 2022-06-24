@@ -12,6 +12,7 @@ export default function PlayerCard({
   const history = useHistory();
   //get the pathname that we are currently on
   const pathname = useLocation();
+  
 
   const { id, name, team_name, image, stats, current_bets, bets } = player;
 
