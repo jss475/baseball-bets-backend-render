@@ -6,6 +6,7 @@ import Signup from "./Signup";
 import User from "./User";
 import Players from "./Players";
 import BetsContainer from "./BetsContainer";
+import AddMoney from "./AddMoney";
 
 function App() {
   const [isLoggedin, setLoggedin] = useState(() => {
@@ -52,9 +53,9 @@ function App() {
           <Route exact path="/bets/:id">
             <BetsContainer />
           </Route>
-          {/*<Route exact path='/place_bets'>*/}
-          {/*<PlaceBets />*/}
-          {/*</Route>*/}
+          <Route exact path="/add-money">
+            <AddMoney />
+          </Route>
         </Switch>
       </div>
     </div>
