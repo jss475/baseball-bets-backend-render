@@ -1,11 +1,26 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "../bets_card.css";
 
 function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
   const [betFormSubmit, setBetFormSubmit] = useState(false);
   const [newUserBet, setNewUserBet] = useState({});
+  const history = useHistory();
   //create state
   //handles the initial place bet submit
+  const handleOkReq = (data) => {
+    const { bet } = data;
+    Object.keys(newUserBet).length === 0
+      ? setNewUserBet(data)
+      : setNewUserBet({});
+    handleAddBet(bet.id, bet.current_bets, data);
+  };
+
+  const handleErrorReq = ({ error }) => {
+    alert(error);
+    history.push("/add-money");
+  };
+
   async function handleBetSubmit(e) {
     e.preventDefault();
     const betForm = document.querySelector("#bet-form");
@@ -18,16 +33,10 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
     };
 
     const req = await fetch("/user_bets", configObj);
+    const res = await req.json();
 
-    if (req.ok) {
-      const data = await req.json();
-      setNewUserBet(data);
-      handleAddBet(data.bet.id, data.bet.current_bets, data);
-      setBetFormSubmit((betFormSubmit) => !betFormSubmit);
-    } else {
-      const error = await req.json();
-      console.error(error.error);
-    }
+    req.ok ? handleOkReq(res) : handleErrorReq(res);
+    setBetFormSubmit((betFormSubmit) => !betFormSubmit);
 
     betForm.reset();
   }
@@ -37,7 +46,9 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
 
     const updateBetForm = document.querySelector("#update-bet-form");
     const form = new FormData(updateBetForm);
+    console.log(newUserBet.money_bet);
     form.append("prev_bet", newUserBet.money_bet);
+    console.log(form.get("prev_bet"));
 
     const configObj = {
       method: "PATCH",
@@ -45,11 +56,9 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
     };
 
     const req = await fetch(`/user_bets/${newUserBet.id}`, configObj);
-    const data = await req.json();
+    const res = await req.json();
 
-    console.log(data);
-
-    handleAddBet(data.bet.id, data.bet.current_bets, data);
+    req.ok ? handleOkReq(res) : handleErrorReq(res);
     setBetFormSubmit((betFormSubmit) => !betFormSubmit);
 
     updateBetForm.reset();

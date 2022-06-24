@@ -8,4 +8,5 @@ class User < ApplicationRecord
     def has_enough_money?(bet)
       money >= bet.to_f
     end
+
 end
