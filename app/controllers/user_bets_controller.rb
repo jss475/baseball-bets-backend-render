@@ -1,6 +1,7 @@
 class UserBetsController < ApplicationController
 
-    before_action :authorize, only: [:create, :destroy]
+    before_action :authorize, only: [:create, :update, :destroy]
+    before_action :authorize_bet, only:[:create, :update, :destroy]
 
     def index
         render json: UserBet.all, status: :ok
@@ -13,8 +14,8 @@ class UserBetsController < ApplicationController
 
     def create
 
-        user = User.find(session[:user_id])
-        bet = user.user_bets.create!(ub_params)
+        #user = User.find(session[:user_id])
+        bet = current_user.user_bets.create!(ub_params)
         bet.winnings
 
         ub = UserBet.find(bet.id)
@@ -34,8 +35,7 @@ class UserBetsController < ApplicationController
     end
 
     def update
-        user = User.find(session[:user_id]) 
-        ub = user.user_bets.last
+        ub = current_user.user_bets.last
 
         ub.update!(ub_params)
 
@@ -53,7 +53,14 @@ class UserBetsController < ApplicationController
     # Create authorization for placing a bet
     def authorize
 
-        return render json: {error: "Not authorized"} unless session.include? :user_id
+      render json: { error: "You must be logged in to place bets" } unless current_user 
 
     end
+
+    def authorize_bet
+      render json: { error: "You don't have enough money for that" }, 
+        status: :payment_required unless current_user.has_enough_money?(params[:money_bet]) 
+
+    end
+
 end
