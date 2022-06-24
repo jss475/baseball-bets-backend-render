@@ -94,6 +94,8 @@ class UserBet < ApplicationRecord
       "You lost #{money_bet.to_i} dollars from your bet on #{bet.player.name} sucks to suck"
     end
   end
+
+
   
 
 end

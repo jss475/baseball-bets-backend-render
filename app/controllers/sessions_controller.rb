@@ -21,13 +21,4 @@ class SessionsController < ApplicationController
         head :no_content
     end
       
-
-#     def is_authorized?
-#         render json: { error: 'not authorized' } unless current_user
-#     end
-
-#     def current_user
-#         User.find(session[:user_id])
-#     end
-
 end
