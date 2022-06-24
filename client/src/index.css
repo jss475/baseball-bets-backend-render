@@ -12,3 +12,7 @@ html {
     background-repeat: repeat-y
 }
 
+.d-inline-block {
+    mix-blend-mode: multiply;
+}
+

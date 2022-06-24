@@ -1,57 +1,12 @@
-/* .card-img_player_bets{
-    opacity: 0.15;
-   
-}
+/* Specifically for BetsCardForPlayers.jsx */
 
-.full-card {
-    width: 25rem;
-    height: auto;
-    position: relative;
-    overflow: auto;
-    margin: 0.5rem;
-    
-}
-
-.card-text {
-    margin: 0, 0, 0.5rem;
-}
-
-.badge {
-    margin: 0
-}
-
-
-.card-group {
-    justify-content: center
-}
-
-.full-player-card-container {
+.badge-container {
     display: flex;
-    width: 100%
-}
+    justify-content: space-between
 
-#full-player-card {
-    margin-top: 10px;
-    background-color: rgb(237, 237, 237);
-    border-style: solid;
-    border-radius: 8px;
-    font-family: 'Oswald', sans-serif;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#player-card-img{
-    width: 100%;
-    border-radius: 5px;
-    margin: 7px
-}
-
-#player-card-title{
-    font-size: 30px;
-    font-family: 'Graduate', cursive;
-}
-
-.all-player-cards{
-    justify-content: center
-} */
+  }
+  
+  
+  
+  
+  /* ------------------------------------------------- */
