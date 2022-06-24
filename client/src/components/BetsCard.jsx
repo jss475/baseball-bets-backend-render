@@ -34,7 +34,7 @@ function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet }) {
             <div className="bets-card-money">
               <h4 className="bets-card-money-child">
                 <span className="bets-card-label">Odds</span>
-                {odds}
+                {odds}:1
               </h4>
               <h4 className="bets-card-money-child">
                 <span className="bets-card-label">Current Bets</span>$

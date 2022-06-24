@@ -1,9 +1,10 @@
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useHistory } from "react-router-dom";
+import logo from '../BaseballBetsLogo2.png'
 
-const IMAGE_URL =
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZbLwrIgZHu-XANoCFGEVWS0I5Bp9fYbGDEb4QAsLdW_Rlpto98lb0YAEiHx7P7IivKy4&usqp=CAU";
+// const IMAGE_URL =
+//   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZbLwrIgZHu-XANoCFGEVWS0I5Bp9fYbGDEb4QAsLdW_Rlpto98lb0YAEiHx7P7IivKy4&usqp=CAU";
 
 export default function Header({ isLoggedin, handleLogin }) {
   let history = useHistory();
@@ -24,7 +25,7 @@ export default function Header({ isLoggedin, handleLogin }) {
           <Navbar.Brand href="/">
             <img
               alt="Logo"
-              src={IMAGE_URL}
+              src={logo}
               width="30"
               height="30"
               className="d-inline-block align-top"

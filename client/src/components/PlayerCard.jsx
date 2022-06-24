@@ -3,8 +3,6 @@ import BetsCardForPlayers from "./BetsCardForPlayers";
 import "../player_bet_card.css";
 import "../player_card.css";
 
-const IMAGE_URL =
-  "https://external-preview.redd.it/jWKncWstM5fxKth8CSIb_2RFtaR_karh35cqpWO_oUw.jpg?format=pjpg&auto=webp&s=1f8d40d3d134b94de661e6a54eefc0729e12bc65";
 
 export default function PlayerCard({
   player,
@@ -19,12 +17,14 @@ export default function PlayerCard({
   const pathname = useLocation();
 
   function handleCardClick() {
-    if (pathname !== `/players/${id}`) {
+    if (pathname.pathname !== `/players/${id}`) {
       handleSetPlayerShow();
       history.push(`/players/${id}`);
     }
   }
-
+  console.log(pathname.pathname)
+  console.log(`/players/${id}`)
+  console.log(playerShow)
   return (
     <>
       {/* <div className="card mb-3" id="full-player-card" onClick={handleCardClick}>
@@ -58,15 +58,8 @@ export default function PlayerCard({
       <div className="player-card" onClick={handleCardClick}>
         <div className="additional">
           <div className="user-card">
-            {/* <div className="level center">
-                Level 13
-              </div>
-              <div className="points center">
-                5,312 Points
-              </div> */}
-            {/* put image in here  */}
             <img
-              src="https://external-preview.redd.it/jWKncWstM5fxKth8CSIb_2RFtaR_karh35cqpWO_oUw.jpg?format=pjpg&auto=webp&s=1f8d40d3d134b94de661e6a54eefc0729e12bc65"
+              src={image}
               alt="..."
             />
           </div>
@@ -84,38 +77,37 @@ export default function PlayerCard({
               <div>
                 <div className="title">Average</div>
                 <i className="fa fa-trophy"></i>
-                <div className="value">0.300</div>
+                <div className="value">{stats[0].toFixed(3)}</div>
               </div>
               <div>
                 <div className="title">HR</div>
                 <i className="fa fa-gamepad"></i>
-                <div className="value">27</div>
+                <div className="value">{stats[1]}</div>
               </div>
               <div>
                 <div className="title">RBI</div>
                 <i className="fa fa-group"></i>
-                <div className="value">123</div>
+                <div className="value">{stats[2]}</div>
               </div>
               <div>
                 <div className="title">WAR</div>
                 <i className="fa fa-coffee"></i>
-                <div className="value">1.1</div>
+                <div className="value">{stats[3]}</div>
               </div>
             </div>
           </div>
         </div>
         <div className="general">
           <h1>{name}</h1>
-          <p>An exicting player!</p>
           <span className="more">Mouse over the card for more info</span>
         </div>
       </div>
 
-      {/*{playerShow*/}
-      {/*? bets.map((bet) => {*/}
-      {/*return <BetsCardForPlayers bet={bet} />;*/}
-      {/*})*/}
-      {/*: null}*/}
+      <div className="card-group">
+          {playerShow ? bets.map(bet => {
+            return <BetsCardForPlayers key={bet.id} bet={bet} /> 
+          }) : null}
+      </div> 
     </>
   );
 }

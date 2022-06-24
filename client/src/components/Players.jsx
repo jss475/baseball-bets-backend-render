@@ -5,10 +5,8 @@ import PlayerCard from "./PlayerCard";
 export default function Players() {
   const [players, setPlayers] = useState([]);
   const [showPlayer, setShowPlayers] = useState([]);
-  console.log(players);
   //create an id variable based off of the individual player card picked
   let { id } = useParams();
-  console.log(`id is ${id}`);
   //used as a conditional for when to display all players or the player card that has been clicked
   const [playerShow, setPlayerShow] = useState(() => {
     return id ? true : false;

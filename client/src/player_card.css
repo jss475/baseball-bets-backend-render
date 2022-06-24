@@ -32,13 +32,15 @@
 
 .player-card h1 {
   text-align: center;
+  font-family: 'Graduate', cursive;
+  margin-top: 10px
 }
 
 .player-card .additional {
   position: absolute;
   width: 250px;
   height: 100%;
-  background: linear-gradient(#5e8fde, #6e8eee);
+  background: linear-gradient(#2472ef, #1266F1);
   transition: width 0.4s;
   overflow: hidden;
   z-index: 2;
@@ -114,10 +116,13 @@
   color: #224C36;
 }
 
+/* team name card */
 .player-card .additional .coords {
   margin: 0 1rem;
   color: #fff;
-  font-size: 1rem;
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'Graduate', cursive;
 }
 
 .player-card.green .additional .coords {
