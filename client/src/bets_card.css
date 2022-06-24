@@ -6,7 +6,13 @@
 } */
 
 
+/* SPECIFICALLY FOR BETSCONTAINER */
 
+.all-bets-container{
+  text-align: center
+}
+
+/* ---------------------------------------------------------------- */
 .bets-img {
   max-height: 150px;
   margin: auto;

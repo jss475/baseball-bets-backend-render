@@ -15,6 +15,7 @@ export default function PlayerCard({
   const history = useHistory();
   //get the pathname that we are currently on
   const pathname = useLocation();
+  
 
   function handleCardClick() {
     if (pathname.pathname !== `/players/${id}`) {

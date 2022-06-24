@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import '../log_in.css'
 
 export default function Signup({ handleLogin }) {
   const [errors, setErrors] = useState([]);
@@ -40,26 +41,29 @@ export default function Signup({ handleLogin }) {
           <p key={i}>{err}</p>
         ))}
       </div>
-      <Form id="signup-form" onSubmit={handleSubmit}>
-        <Form.Group className="my-3">
-          <Form.Label>name:</Form.Label>
-          <Form.Control name="name" type="text" />
-        </Form.Group>
+      <div className="log-in-container">
+        <Form id="signup-form" onSubmit={handleSubmit}>
+          <Form.Group className="my-3">
+            <Form.Label>Your Name</Form.Label>
+            <Form.Control name="name" type="text" placeholder="Enter your name" />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>username:</Form.Label>
-          <Form.Control name="username" type="text" />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control name="username" type="text" placeholder="Enter your username" />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>password:</Form.Label>
-          <Form.Control name="password" type="password" />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control name="password" type="password" placeholder="Enter your password"/>
+          </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
+
     </>
   );
 }
