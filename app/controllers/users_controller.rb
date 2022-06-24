@@ -1,16 +1,13 @@
 class UsersController < ApplicationController
-  
-  #before_action :authorize, only: [:show]
 
-  wrap_parameters format: []
-    
+    before_action :authorized, only: [:show]
+  
     def index
         render json: User.all, status: :ok
     end
 
     def show
-        user = User.find(session[:user_id])
-        render json: user, include: ['user_bets.bet'], status: :ok
+        render json: current_user, include: ['user_bets.bet'], status: :ok
     end
 
     def create
@@ -19,14 +16,20 @@ class UsersController < ApplicationController
         render json: user.id, status: :created
     end
 
+    def add_money
+      money = current_user.money + params[:money].to_f
+      current_user.update!(money: money)
+      head :ok
+    end
+
     private
 
     def user_params
         params.permit(:name, :username, :password, :money, :winnings)
     end
 
-#     def authorized
-#         render json: { error: 'not authorized' }, status: :unauthorized unless session.include? :user_id
-#     end
+    def authorized
+        render json: { error: 'not authorized' }, status: :unauthorized unless current_user 
+    end
 
 end

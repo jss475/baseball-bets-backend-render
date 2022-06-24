@@ -1,7 +1,6 @@
 class UserBet < ApplicationRecord
     belongs_to :user
     belongs_to :bet
-    #attr_accessor :payout
 
     validates :user_id, presence: true, numericality: true
     validates :bet_id, presence: true, numericality: true
@@ -20,6 +19,7 @@ class UserBet < ApplicationRecord
       money = user.money - money_bet
       winnings = user.winnings - money_bet 
     end
+
     user.update!(money: money, winnings: winnings)
     
   end   
@@ -32,8 +32,8 @@ class UserBet < ApplicationRecord
     #assign the new value of greater bets accordingingly
     current_bets = gt_prev ? bet.current_bets + total : bet.current_bets - total
     #update current bets
+    byebug
     bet.update!(current_bets: current_bets)
-    
     #find the total payout for a winning bet
     payout = money_bet * bet.odds - prev_bet.to_f * bet.odds  
 
@@ -94,8 +94,5 @@ class UserBet < ApplicationRecord
       "You lost #{money_bet.to_i} dollars from your bet on #{bet.player.name} sucks to suck"
     end
   end
-
-
-  
 
 end

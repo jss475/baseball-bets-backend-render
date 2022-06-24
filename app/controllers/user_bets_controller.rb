@@ -17,7 +17,8 @@ class UserBetsController < ApplicationController
         #user = User.find(session[:user_id])
         bet = current_user.user_bets.create!(ub_params)
         bet.winnings
-
+        
+        #this is so we can use the UserBetSerializer
         ub = UserBet.find(bet.id)
         
         render json: ub, status: :created
@@ -35,11 +36,13 @@ class UserBetsController < ApplicationController
     end
 
     def update
-        ub = current_user.user_bets.last
+        bet = current_user.user_bets.last
 
-        ub.update!(ub_params)
+        bet.update!(ub_params)
 
-        ub.update_winnings(params[:prev_bet])
+        bet.update_winnings(params[:prev_bet])
+
+        ub = UserBet.find(bet.id)
 
         render json: ub, status: :ok
     end
@@ -52,15 +55,12 @@ class UserBetsController < ApplicationController
 
     # Create authorization for placing a bet
     def authorize
-
       render json: { error: "You must be logged in to place bets" } unless current_user 
-
     end
 
     def authorize_bet
       render json: { error: "You don't have enough money for that" }, 
         status: :payment_required unless current_user.has_enough_money?(params[:money_bet]) 
-
     end
 
 end

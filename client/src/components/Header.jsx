@@ -1,10 +1,7 @@
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useHistory } from "react-router-dom";
-import logo from '../BaseballBetsLogo2.png'
-
-// const IMAGE_URL =
-//   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZbLwrIgZHu-XANoCFGEVWS0I5Bp9fYbGDEb4QAsLdW_Rlpto98lb0YAEiHx7P7IivKy4&usqp=CAU";
+import logo from "../BaseballBetsLogo2.png";
 
 export default function Header({ isLoggedin, handleLogin }) {
   let history = useHistory();
@@ -54,7 +51,12 @@ export default function Header({ isLoggedin, handleLogin }) {
                 </LinkContainer>
               </>
             ) : (
-              <Button onClick={handleClick}>logout</Button>
+              <>
+                <LinkContainer to="/add-money" exact>
+                  <Nav.Link href="#action6">add money</Nav.Link>
+                </LinkContainer>
+                <Button onClick={handleClick}>logout</Button>
+              </>
             )}
           </Nav>
         </Container>

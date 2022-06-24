@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :user_bets, only: [:index, :show, :create, :destroy, :update]
 
     get '/validate_user', to: 'users#show'
+    patch '/add-money', to: 'users#add_money'
     post '/signup', to: "users#create"
     post '/login', to: 'sessions#login'
     delete '/logout', to: "sessions#logout"

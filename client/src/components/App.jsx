@@ -7,6 +7,7 @@ import User from "./User";
 import Players from "./Players";
 import BetsContainer from "./BetsContainer";
 import About from "./About";
+import AddMoney from "./AddMoney";
 
 function App() {
   const [isLoggedin, setLoggedin] = useState(() => {
@@ -20,23 +21,6 @@ function App() {
       ? localStorage.setItem("loggedin", JSON.stringify(true))
       : localStorage.clear();
   };
-
-  //conditional on the container className to have full access to webpage for about page
-  // const {pathname} = useLocation();
-
-  // useEffect(()=> {
-  //   if(pathname){
-  //     if(pathname ===  "/about"){
-  //       // console.log(document.querySelectorAll('.container')[1].className)
-  //       document.querySelectorAll('.container')[1].className="hi"
-  //     }else{
-  //       // console.log(document.querySelectorAll('.container')[1].className)
-  //       // debugger
-  //       document.querySelectorAll('.container')[1].className="container"
-  //     }
-  //   }
-  // },[pathname])
- 
 
   return (
     <>
@@ -73,9 +57,9 @@ function App() {
             <Route exact path="/bets/:id">
               <BetsContainer />
             </Route>
-            {/*<Route exact path='/place_bets'>*/}
-            {/*<PlaceBets />*/}
-            {/*</Route>*/}
+            <Route exact path="/add-money">
+              <AddMoney />
+            </Route>
           </Switch>
         </div>
         <div className = "footer">
