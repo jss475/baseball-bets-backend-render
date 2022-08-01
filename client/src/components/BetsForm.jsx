@@ -9,11 +9,13 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
   //create state
   //handles the initial place bet submit
   const handleOkReq = (data) => {
-    const { bet } = data;
-    Object.keys(newUserBet).length === 0
-      ? setNewUserBet(data)
-      : setNewUserBet({});
-    handleAddBet(bet.id, bet.current_bets, data);
+
+      const { bet } = data;
+      Object.keys(newUserBet).length === 0
+        ? setNewUserBet(data)
+        : setNewUserBet({});
+      handleAddBet(bet.id, bet.current_bets, data);
+
   };
 
   const handleErrorReq = ({ error }) => {
@@ -34,11 +36,21 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
 
     const req = await fetch("/user_bets", configObj);
     const res = await req.json();
-
-    req.ok ? handleOkReq(res) : handleErrorReq(res);
-    setBetFormSubmit((betFormSubmit) => !betFormSubmit);
-
-    betForm.reset();
+    if(res["error"]){
+      if(res["status"] === 500){
+        alert("Please add a bet!")
+      }else{
+        alert(res["error"]);
+        if(res["error"].includes("enough money")){
+          history.push("/add-money");
+        }
+      }
+    }else{
+      req.ok ? handleOkReq(res) : handleErrorReq(res);
+      setBetFormSubmit((betFormSubmit) => !betFormSubmit);
+  
+      betForm.reset();
+    }
   }
   //handle the update bet
   async function handleUpdateBet(e) {
