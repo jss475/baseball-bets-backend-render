@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Abel');
+@import url("https://fonts.googleapis.com/css?family=Abel");
 
 /* html, body {
   background: #FCEEB5;
   font-family: Abel, Arial, Verdana, sans-serif;
 } */
-.all-player-cards{
-    left: -50%
+.all-player-cards {
+  left: -50%;
 }
 .player-card-center {
   position: relative;
@@ -23,7 +23,7 @@
   height: 250px;
   background-color: #fff;
   background: linear-gradient(#f8f8f8, #fff);
-  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
   border-radius: 6px;
   overflow: hidden;
   position: relative;
@@ -32,24 +32,23 @@
 
 .player-card h1 {
   text-align: center;
-  font-family: 'Graduate', cursive;
-  margin-top: 10px
+  font-family: "Graduate", cursive;
+  margin-top: 10px;
 }
 
 .player-card .additional {
   position: absolute;
   width: 250px;
   height: 100%;
-  background: linear-gradient(#2472ef, #1266F1);
+  background: linear-gradient(#2472ef, #1266f1);
   transition: width 0.4s;
   overflow: hidden;
   z-index: 2;
 }
 
 .player-card.green .additional {
-  background: linear-gradient(#92bCa6, #A2CCB6);
+  background: linear-gradient(#92bca6, #a2ccb6);
 }
-
 
 .player-card:hover .additional {
   width: 100%;
@@ -70,7 +69,7 @@
   top: 10%;
   right: -2px;
   height: 80%;
-  border-left: 2px solid rgba(0,0,0,0.025);
+  border-left: 2px solid rgba(0, 0, 0, 0.025);
 }
 
 .player-card .additional .user-card .level,
@@ -80,7 +79,7 @@
   text-transform: uppercase;
   font-size: 0.75em;
   font-weight: bold;
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.15);
   padding: 0.125rem 0.75rem;
   border-radius: 100px;
   white-space: nowrap;
@@ -113,7 +112,7 @@
 }
 
 .player-card.green .additional .more-info h1 {
-  color: #224C36;
+  color: #224c36;
 }
 
 /* team name card */
@@ -122,11 +121,11 @@
   color: #fff;
   font-size: 2rem;
   text-align: center;
-  font-family: 'Graduate', cursive;
+  font-family: "Graduate", cursive;
 }
 
 .player-card.green .additional .coords {
-  color: #325C46;
+  color: #325c46;
 }
 
 .player-card .additional .coords span + span {
@@ -145,7 +144,7 @@
 }
 
 .player-card.green .additional .stats {
-  color: #325C46;
+  color: #325c46;
 }
 
 .player-card .additional .stats > div {

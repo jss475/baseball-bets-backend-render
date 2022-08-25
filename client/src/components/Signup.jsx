@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import '../log_in.css'
+import "../log_in.css";
 
 export default function Signup({ handleLogin }) {
   const [errors, setErrors] = useState([]);
@@ -45,17 +45,29 @@ export default function Signup({ handleLogin }) {
         <Form id="signup-form" onSubmit={handleSubmit}>
           <Form.Group className="my-3">
             <Form.Label>Your Name</Form.Label>
-            <Form.Control name="name" type="text" placeholder="Enter your name" />
+            <Form.Control
+              name="name"
+              type="text"
+              placeholder="Enter your name"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
-            <Form.Control name="username" type="text" placeholder="Enter your username" />
+            <Form.Control
+              name="username"
+              type="text"
+              placeholder="Enter your username"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Enter your password"/>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+            />
           </Form.Group>
 
           <Button variant="primary" type="submit">
@@ -63,7 +75,6 @@ export default function Signup({ handleLogin }) {
           </Button>
         </Form>
       </div>
-
     </>
   );
 }

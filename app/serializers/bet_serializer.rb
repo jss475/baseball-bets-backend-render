@@ -3,5 +3,4 @@ class BetSerializer < ActiveModel::Serializer
 
   belongs_to :player
   has_many :user_bets
-  #, serializer: IndexBetsUserBetsSerializer
 end

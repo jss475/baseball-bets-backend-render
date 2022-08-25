@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Switch, Redirect, Route, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Switch, Redirect, Route } from "react-router-dom";
 import Header from "./Header";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -26,16 +26,14 @@ function App() {
     <>
       <div className="App">
         <Header isLoggedin={isLoggedin} handleLogin={handleLogin} />
-
-        <div>
+        <div className="container">
           <Switch>
             <Route exact path="/about">
               <About />
             </Route>
             <Route exact path="/">
-              {isLoggedin ? <Redirect to="/user" /> : "Welcome to our home page"}
+              {isLoggedin ? <Redirect to="/user" /> : <Redirect to="/about" />}
             </Route>
-            
             <Route exact path="/login">
               <Login handleLogin={handleLogin} />
             </Route>
@@ -62,11 +60,13 @@ function App() {
             </Route>
           </Switch>
         </div>
-        <div className = "footer">
-          <p>We are not responsible for you losing any money. Please seek the neccessary help if needed.</p>
+        <div className="footer">
+          <p>
+            We are not responsible for you losing any money. Please seek the
+            neccessary help if needed.
+          </p>
         </div>
       </div>
-    
     </>
   );
 }

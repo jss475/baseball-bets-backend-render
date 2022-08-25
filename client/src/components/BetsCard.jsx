@@ -4,7 +4,7 @@ import "../bets_card.css";
 
 function BetsCard({ bet, show, handleSetShow, handleAddBet, handleDeleteBet }) {
   //refactor the bet prop for the properties needed
-  const { id, win, odds, description, current_bets, player } = bet;
+  const { id, odds, description, current_bets, player } = bet;
   //set up the useHistory to push to new form
   const history = useHistory();
   const { pathname } = useLocation();

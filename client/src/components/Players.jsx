@@ -44,26 +44,16 @@ export default function Players() {
 
   return (
     <>
-    {/* <div className="all-player-cards"> */}
-
-
-    <div className="player-card-center">
-      {showPlayer.map(player => (
-          <PlayerCard 
+      <div className="player-card-center">
+        {showPlayer.map((player) => (
+          <PlayerCard
             key={player.id}
             player={player}
             playerShow={playerShow}
             handleSetPlayerShow={handleSetPlayerShow}
-
-          /> 
-        ))}   
-    </div>
-
-    {/* </div> */}
-
-
+          />
+        ))}
+      </div>
     </>
-
-    //</div>
-  )
+  );
 }

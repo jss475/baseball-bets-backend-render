@@ -6,8 +6,7 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
   const [betFormSubmit, setBetFormSubmit] = useState(false);
   const [newUserBet, setNewUserBet] = useState({});
   const history = useHistory();
-  //create state
-  //handles the initial place bet submit
+
   const handleOkReq = (data) => {
     const { bet } = data;
     Object.keys(newUserBet).length === 0
