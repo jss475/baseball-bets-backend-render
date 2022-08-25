@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "UserBets", type: :request do
   describe "GET /index" do

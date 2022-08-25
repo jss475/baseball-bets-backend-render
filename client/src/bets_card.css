@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700");
 /* body {
   font-family: "Open Sans", Helvetica, sans-serif;
   text-align: center;
   margin: 20px;
 } */
 
-
 /* SPECIFICALLY FOR BETSCONTAINER */
 
-.all-bets-container{
-  text-align: center
+.all-bets-container {
+  text-align: center;
 }
 
 /* ---------------------------------------------------------------- */
@@ -25,18 +24,18 @@
 } */
 
 label {
-    margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .bets-card {
   display: inline-block;
   width: 350px;
   padding: 1em;
-  border-radius: 15px;  
+  border-radius: 15px;
   margin: 10px;
   background: #ddd;
   text-align: left;
-  position: relative;  
+  position: relative;
   transition: 0.4s;
   box-shadow: 0px 5px 20px -10px #111111;
   color: #fff;
@@ -47,92 +46,88 @@ label {
       transform: translateY(0px) rotate($rotation);      
     }
   } */
-
-  
 }
 
-.bets-form-container{
-    margin-left: -40%;
-    width: fit-content
-
+.bets-form-container {
+  margin-left: -40%;
+  width: fit-content;
 }
 
-.bets-card-btn-container{
-    margin-left: 30%;
-    /* margin-right: 30%; */
-    margin-bottom: 10px;
-    width: fit-content
+.bets-card-btn-container {
+  margin-left: 30%;
+  /* margin-right: 30%; */
+  margin-bottom: 10px;
+  width: fit-content;
 }
 
-.bets-form{
-    margin-left: 0
+.bets-form {
+  margin-left: 0;
 }
 
 .bets-card:hover {
-    z-index: 5;
-    box-shadow: 0px 13px 30px -15px #000000;
-    transform:translateY(-10px);
+  z-index: 5;
+  box-shadow: 0px 13px 30px -15px #000000;
+  transform: translateY(-10px);
 }
 
 .bets-card-water {
-    background: linear-gradient(120deg, #1CB5E0 0%, #000851 100%);    
-    box-shadow: 0px 5px 20px -10px #000851;
-    background-color: #1CB5E0;
-    width: 100%;
-    height: fit-content;
-    border-radius: 10px;
-    padding: 10px;
+  background: linear-gradient(120deg, #1cb5e0 0%, #000851 100%);
+  box-shadow: 0px 5px 20px -10px #000851;
+  background-color: #1cb5e0;
+  width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .bets-card-img-container {
-    background-color: rgba(#000000, 0.7);
-    text-align: center;
-    padding: 1em 1em 0;
-    border-radius: 3px 3px 0 0;
+  background-color: rgba(#000000, 0.7);
+  text-align: center;
+  padding: 1em 1em 0;
+  border-radius: 3px 3px 0 0;
 }
 
+.bets-card-caption {
+  background-color: rgba(#ffffff, 0.65);
+  padding: 1em;
+  position: relative;
+  border-radius: 0 0 3px 3px;
+}
 
- .bets-card-caption{
-    background-color: rgba(#ffffff, 0.65);
-    padding: 1em;
-    position: relative;
-    border-radius: 0 0 3px 3px;
-  }
+.bets-card-name {
+  font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
 
-  .bets-card-name{
-    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
-    text-align: center;
-    font-size: 1.5em;    
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
+.bets-card-money {
+  display: flex;
+  justify-content: space-between;
+}
+.bets-card-money-child {
+  /* margin-top: 1em; */
+  flex: 1 0;
+}
 
-  .bets-card-money{
-    display: flex;
-    justify-content: space-between;
-  }
- .bets-card-money-child{
-    /* margin-top: 1em; */
-    flex: 1 0;
-  }
+.bets-card-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 3px;
+}
 
-  .bets-card-label{
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 400;
-    display: block;
-    margin-bottom: 3px;
-  }
-  
-  .bets-card p{
-    /* margin: 1em 0; */
-    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
-    text-align: center;
-    font-weight: 300;
-    font-size: x-large;
-    }
+.bets-card p {
+  /* margin: 1em 0; */
+  font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+  text-align: center;
+  font-weight: 300;
+  font-size: x-large;
+}
 
-  /* &__type {
+/* &__type {
     position: absolute;
     top: 0;
     right: 1em;
@@ -147,12 +142,7 @@ label {
     background: #bbbbbb;
   } */
 
-
-  
-  
-
-  
-  /* &__stats {
+/* &__stats {
     margin: 1em 0;
     th {
       font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
@@ -167,14 +157,8 @@ label {
     }
     
   } */
-  
 
-
-  
-  
-  
-  
-  /* &--normal {
+/* &--normal {
     background: linear-gradient(110deg, #FDBB2D 0%, #3A1C71 100%);
     box-shadow: 0px 5px 20px -10px #3A1C71;
     .card__type {
@@ -233,6 +217,3 @@ label {
       background: #ff8a95;
     }
   } */
-  
-  
-  

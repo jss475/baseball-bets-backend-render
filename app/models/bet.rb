@@ -1,10 +1,9 @@
 class Bet < ApplicationRecord
-    belongs_to :player
-    has_many :user_bets
-    has_many :users, through: :user_bets
+  belongs_to :player
+  has_many :user_bets
+  has_many :users, through: :user_bets
 
-    validates :price, presence: true, numericality: true
-    validates :odds, presence: true
-    validates :description, presence: true
-
+  validates :price, presence: true, numericality: true
+  validates :odds, presence: true
+  validates :description, presence: true
 end

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BetsCard from "./BetsCard";
-import '../bets_card.css'
+import "../bets_card.css";
 
 function BetsContainer() {
   const [allBets, setAllBets] = useState([]);
@@ -81,7 +81,6 @@ function BetsContainer() {
           );
         })}
       </div>
-
     </>
   );
 }

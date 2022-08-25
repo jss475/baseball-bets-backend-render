@@ -23,7 +23,6 @@ export default function User({ handleLogin }) {
 
   const { user_bets, name, money, winnings } = user;
 
-  console.log(user_bets);
   return (
     <>
       <div className="user-container">

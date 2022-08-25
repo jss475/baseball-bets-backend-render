@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import '../log_in.css'
+import "../log_in.css";
 
 export default function Login({ handleLogin }) {
   const [error, setError] = useState("");
@@ -35,22 +35,27 @@ export default function Login({ handleLogin }) {
         <Form id="login-form" onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
-            <Form.Control name="username" type="text" placeholder="Enter username"/>
+            <Form.Control
+              name="username"
+              type="text"
+              placeholder="Enter username"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Enter password"/>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Enter password"
+            />
           </Form.Group>
 
           <Button className="d-grid" variant="primary" type="submit">
             Submit
           </Button>
         </Form>
-      
-
       </div>
     </>
-
   );
 }
