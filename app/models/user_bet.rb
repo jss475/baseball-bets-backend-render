@@ -7,7 +7,7 @@ class UserBet < ApplicationRecord
 
   # this happens on the create method
   def winnings
-    current_bets = bet.current_bets.to_f + money_bet.to_f
+    current_bets = (bet.current_bets + money_bet).to_f
     bet.update!(current_bets: current_bets)
 
     if bet.win
@@ -52,7 +52,7 @@ class UserBet < ApplicationRecord
 
   # this occurs on the delete method. We switch signs because we did all this stuff in winnings method
   def remove_winnings
-    current_bets = bet.current_bets.to_f - money_bet.to_f
+    current_bets = (bet.current_bets - money_bet).to_f
     bet.update!(current_bets: current_bets)
 
     if bet.win
@@ -73,7 +73,7 @@ class UserBet < ApplicationRecord
 
   def user_message
     if bet.win
-      total = user.money.to_i - money_bet.to_i
+      total = (money_bet * bet.odds).to_i
       "You won #{total} dollars from your bet on #{bet.player.name} to #{bet.description}"
     else
       "You lost #{money_bet.to_i} dollars from your bet on #{bet.player.name} sucks to suck"
