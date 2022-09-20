@@ -99,7 +99,7 @@ If you want to learn how to use the Google Maps API, check out my blog post here
 <!-- CONTACT -->
 ## Contact
 
-Joseph Shin - shin.seung.won@gmail.com
+Joseph Shin - shin.seung.won@gmail.com 
 
 Project Link: [https://github.com/jss475/phase-4-project](https://github.com/jss475/phase-4-project)
 
