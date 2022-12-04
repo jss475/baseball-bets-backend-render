@@ -16,7 +16,7 @@ Baseball Bets is a web application that allows users to bet on sports. This bett
 
 <div align="center">Welcome to Baseball Bets. </div>
 <div align="center">
-<img src="./client/public/BaseballBetsLogo2.png"alt="Logo" width="150" height="150">rails s
+<img src="./client/public/BaseballBetsLogo2.png"alt="Logo" width="150" height="150">
 </div>
 <br/>
 <div align="center">
