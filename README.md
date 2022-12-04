@@ -1,113 +1,137 @@
-<a name="readme-top"></a>
-<!--
-*** Used the Best-README-Template.
--->
+# Baseball Bets
+> A betting service application where users can bet on baseball related statistics.  
 
+## Table of contents
+* [General info](#general-info)
+* [Project Demo](#project-demo)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
+* [License](#license)
 
-<!-- PROJECT LOGO -->
-<br />
+## General info
+Baseball Bets is a web application that allows users to bet on sports. This betting application is unique in that it allows users to update their bet within 15 seconds of making their initial bet.
+
+<div align="center">Welcome to Baseball Bets. </div>
 <div align="center">
-  <a href="https://github.com/jss475/phase-4-project">
-    <img src="./client/public/BaseballBetsLogo2.png" alt="Logo" width="150" height="150">
-  </a>
-
-  <h1 align="center">Baseball Bets</h3>
-
+<img src="./client/public/BaseballBetsLogo2.png"alt="Logo" width="150" height="150">rails s
+</div>
+<br/>
+<div align="center">
+<kbd>
+<img src="./BB_home.png">
+</kbd>
 </div>
 
+<br/>
+<div align="center">
+<kbd>
+<img src="./client/public/screen_shot.png">
+</kbd>
+</div>
+
+## Project Demo 
+[Click to view site](https://lit-tundra-09875.herokuapp.com/about)
+
+## Technologies
+### Backend Development 
+* Ruby
+* Ruby on Rails
+* PostgreSQL
+
+### Frontend Development 
+* JavaScript
+* HTML
+* CSS
+* React.js
+* React-DOM
+* React-Router-DOM
+* Bootstrap
+
+## Setup
+To try out this project: 
+1. Clone the GitHub repository locally to your computer
+1. In the command line, navigate to the root directory of the repository, and type the following: 
+  $ npm install 
+1. Navigate to the client folder, and in the root directory of the client folder, type the following: 
+  $ npm install 
+1. In the client folder, and in the root directory of the client folder, type the following: 
+  $ npm start
+1. Navigate back to the root directory of this project and type the following: 
+  $ bundle install
+1. In the root directory, start the server by typing the following: 
+  $ rails s
+
+## Code Examples
+### Ruby/Rails
+```Rails
+def winnings
+  current_bets = (bet.current_bets + money_bet).to_f
+  bet.update!(current_bets: current_bets)
+
+  if bet.win
+    payout = money_bet * bet.odds
+    money = user.money + payout
+    winnings = user.winnings + payout
+  else
+    money = user.money - money_bet
+    winnings = user.winnings - money_bet
+  end
+
+  user.update!(money: money, winnings: winnings)
+end
+```
+
+### JavaScript/React.js 
+```React.js
+async function handleBetSubmit(e) {
+  e.preventDefault();
+  const betForm = document.querySelector("#bet-form");
+  const form = new FormData(betForm);
+  form.append("bet_id", bet.id);
+
+  const configObj = {
+    method: "POST",
+    body: form,
+  };
+
+  const req = await fetch("/user_bets", configObj);
+  const res = await req.json();
+  if(res["error"]){
+    if(res["status"] === 500){
+      alert("Please add a bet!")
+    }else{
+      alert(res["error"]);
+      if(res["error"].includes("enough money")){
+        history.push("/add-money");
+      }
+    }
+  }else{
+    req.ok ? handleOkReq(res) : handleErrorReq(res);
+    setBetFormSubmit((betFormSubmit) => !betFormSubmit);
+
+    betForm.reset();
+  }
+}
+```
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contact">Contact</a></li>
+## Features
+* Full stack web application utilizing React.js and Ruby on Rails.
+* Authorization and authenication implemented with bcrypt.
+* Front-End styles built with Bootstrap and CSS.
+* Users can create account through application. 
+* Users can bet on statistics on players and see their winnings/losses on their profile.
+* Users can updated or cancel their bet within a short timeframe after making their initial bet.
 
-  </ol>
-</details>
+## Status
+Project is finished with option to expand functionality, add a web scraper for live statistics, and DRY out code.
 
+## Inspiration
+The inspiration for Baseball Bets came along when my partner and I were discussing baseball. We wanted a fun way to have users interact with baseball and to increase the retention rate of people watching the games.
 
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Product Name Screen Shot][page-demo]]("https://lit-tundra-09875.herokuapp.com/about")
-
-James Coffman (https://github.com/jamesc40) and I decided to make Baseball Bets to make baseball fun!
-
-People have complained for a while now that baseball is boring and that it takes too long. To spice things up, we allow users to bet on specific user stats. This way, you'll be interested for all 9 innings of play to make sure your bet hits.
-
-Users can:
-* Bet on stats and even update or delete their bet within 10 seconds of placing their first bet
-* Add money into their bank to make bets
-* See current stats of the players and the bets that are available for the players
-
-
-I've built this website using a scaffold that I forked from Flatiron School in order to make it compatible with Heroku.
-
-The contributor spam9999 on Github is also me!
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Built With
-
-<ol>
-    <li>React</li>
-    <li>Javascript</li>
-    <li>Ruby</li>
-    <li>Ruby on Rails</li>
-    <li>Bootstrap</li>
-</ol>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Please feel free to try and break my website and let me know what you find!
-
-If you want to learn how to use the Google Maps API, check out my blog post here: https://dev.to/jss475/google-maps-with-react-4n1o
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Webscrape Player Stats
-- [ ] Add More Player Data
-- [ ] Webscrape Live Stats and to Make New Bets Based on the Stats
-- [ ] Mobile Phone Compatible
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
 ## Contact
-
-Joseph Shin - shin.seung.won@gmail.com 
-
-Project Link: [https://github.com/jss475/phase-4-project](https://github.com/jss475/phase-4-project)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[page-demo]: ./client/public/screen_shot.png
-[Ruby_img]: https://www.ruby-lang.org/images/header-ruby-logo.png
-[Ruby-url]: https://www.ruby-lang.org/en/
+Created by [Joseph Shin](https://www.linkedin.com/in/joseph-sw-shin/) and James Coffman
+Feel free to contact me for any questions! 
