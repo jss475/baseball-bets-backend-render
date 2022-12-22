@@ -6,7 +6,7 @@ ruby "2.7.4"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1.3", ">= 6.1.3.2"
 # Use postgresql as the database for Active Record
-gem "pg"
+gem "pg", "~> 1.4.5"
 # , "~> 1.3.5"
 
 # Use Puma as the app server
