@@ -9,7 +9,7 @@
     "clean": "rm -rf public",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy",
-    "start": "npm start"
+    "start": "cd client && npm start"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.11",
