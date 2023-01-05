@@ -15,7 +15,7 @@ services:
         fromDatabase:
           name: pgpostgres_free
           property: connectionString
-      - key: RAILS_MASTER_KEY
+      - key: RAILS_MASTER_KEY_BB
         sync: false
   - type: redis
     name: redis
