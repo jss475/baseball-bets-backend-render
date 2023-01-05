@@ -1,4 +1,4 @@
-class CreateBbbbusers < ActiveRecord::Migration[6.1]
+class CreateBbusers < ActiveRecord::Migration[6.1]
   def change
     create_table :bbusers do |t|
       t.string :name
