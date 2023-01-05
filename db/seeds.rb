@@ -13,7 +13,7 @@ puts "Creating users..."
   Bbuser.create(
     name: Faker::Name.name,
     username: Faker::Internet.username,
-    password_digest: password,
+    password_digest: 'password',
     money: rand(1..100),
     winnings: rand(1..100)
   )
