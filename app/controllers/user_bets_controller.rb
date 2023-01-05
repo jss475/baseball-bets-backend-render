@@ -11,7 +11,7 @@ class UserBetsController < ApplicationController
     if ub
       render json: ub, status: :ok
     else
-      render json: {[]}
+      render json: {}, status: :not_found
     end
   end
 
