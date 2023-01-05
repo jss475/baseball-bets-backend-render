@@ -33,6 +33,12 @@ function BetsForm({ bet, handleAddBet, handleDeleteBet }) {
       body: form,
     };
 
+    debugger
+    console.log(newUserBet.id)
+    for (const pair of form.entries()) {
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
+
     const req = await fetch("/user_bets", configObj);
     const res = await req.json();
     if(res["error"]){

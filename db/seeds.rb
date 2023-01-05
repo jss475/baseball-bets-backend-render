@@ -10,7 +10,7 @@
 puts "Creating users..."
 
 5.times do
-  User.create(
+  Bbuser.create(
     name: Faker::Name.name,
     username: Faker::Internet.username,
     password_digest: Faker::Internet.password,
@@ -245,37 +245,37 @@ puts "Done creating bets!"
 
 puts "Creating UserBets"
 UserBet.create(
-  user_id: User.ids.sample,
+  bbuser_id: Bbuser.ids.sample,
   bet_id: Bet.ids.sample,
   money_bet: rand(10..1000)
 )
 UserBet.create(
-  user_id: User.ids.sample,
+  bbuser_id: Bbuser.ids.sample,
   bet_id: Bet.ids.sample,
   money_bet: rand(10..1000)
 )
 UserBet.create(
-  user_id: User.ids.sample,
+  bbuser_id: Bbuser.ids.sample,
   bet_id: Bet.ids.sample,
   money_bet: rand(10..1000)
 )
 UserBet.create(
-  user_id: User.ids.sample,
+  bbuser_id: Bbuser.ids.sample,
   bet_id: Bet.ids.sample,
   money_bet: rand(10..1000)
 )
 UserBet.create(
-  user_id: User.ids.sample,
+  bbuser_id: Bbuser.ids.sample,
   bet_id: Bet.ids.sample,
   money_bet: rand(10..1000)
 )
 UserBet.create(
-  user_id: User.ids.sample,
+  bbuser_id: Bbuser.ids.sample,
   bet_id: Bet.ids.sample,
   money_bet: rand(10..1000)
 )
 UserBet.create(
-  user_id: User.ids.sample,
+  bbuser_id: Bbuser.ids.sample,
   bet_id: Bet.ids.sample,
   money_bet: rand(10..1000)
 )

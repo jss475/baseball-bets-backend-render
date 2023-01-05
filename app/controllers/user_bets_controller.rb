@@ -47,7 +47,7 @@ class UserBetsController < ApplicationController
   private
 
   def ub_params
-    params.permit(:user_id, :bet_id, :money_bet)
+    params.permit(:bbuser_id, :bet_id, :money_bet)
   end
 
   # Create authorization for placing a bet

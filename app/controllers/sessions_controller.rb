@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
   def login
-    user = User.find_by(username: params[:username])
+    user = Bbuser.find_by(username: params[:username])
 
     if user&.authenticate(params[:password])
-      session[:user_id] = user.id
+      session[:bbuser_id] = user.id
       head :ok
     else
       render json: {
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session.delete :user_id
+    session.delete :bbuser_id
     head :no_content
   end
 end

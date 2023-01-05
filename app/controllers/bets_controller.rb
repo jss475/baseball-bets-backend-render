@@ -28,6 +28,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.permit(:player_id, :win, :price, :description, :odds, :current_bets)
+    params.permit(:bbuser_id,:player_id, :win, :price, :description, :odds, :current_bets)
   end
 end

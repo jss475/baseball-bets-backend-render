@@ -22,6 +22,7 @@ export default function User({ handleLogin }) {
   }, [handleLogin, history]);
 
   const { user_bets, name, money, winnings } = user;
+  console.log(user)
 
   return (
     <>

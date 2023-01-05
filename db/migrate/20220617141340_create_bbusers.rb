@@ -1,6 +1,6 @@
-class CreateUsers < ActiveRecord::Migration[6.1]
+class CreateBbbbusers < ActiveRecord::Migration[6.1]
   def change
-    create_table :users do |t|
+    create_table :bbusers do |t|
       t.string :name
       t.string :username
       t.string :password_digest

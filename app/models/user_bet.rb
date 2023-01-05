@@ -1,8 +1,8 @@
 class UserBet < ApplicationRecord
-  belongs_to :user
+  belongs_to :bbuser
   belongs_to :bet
 
-  validates :user_id, presence: true, numericality: true
+  validates :bbuser_id, presence: true, numericality: true
   validates :bet_id, presence: true, numericality: true
 
   # this happens on the create method
@@ -12,14 +12,14 @@ class UserBet < ApplicationRecord
 
     if bet.win
       payout = money_bet * bet.odds
-      money = user.money + payout
-      winnings = user.winnings + payout
+      money = bbuser.money + payout
+      winnings = bbuser.winnings + payout
     else
-      money = user.money - money_bet
-      winnings = user.winnings - money_bet
+      money = bbuser.money - money_bet
+      winnings = bbuser.winnings - money_bet
     end
 
-    user.update!(money: money, winnings: winnings)
+    bbuser.update!(money: money, winnings: winnings)
   end
 
   def update_winnings(prev_bet)
@@ -35,19 +35,19 @@ class UserBet < ApplicationRecord
     payout = money_bet * bet.odds - prev_bet.to_f * bet.odds
 
     if bet.win
-      money = user.money + payout
-      winnings = user.winnings + payout
+      money = bbuser.money + payout
+      winnings = bbuser.winnings + payout
     else
       if gt_prev
-        money = user.money - total
-        winnings = user.winnings - total
+        money = bbuser.money - total
+        winnings = bbuser.winnings - total
       else
-        money = user.money + total
-        winnings = user.winnings + total
+        money = bbuser.money + total
+        winnings = bbuser.winnings + total
       end
     end
 
-    user.update!(money: money, winnings: winnings)
+    bbuser.update!(money: money, winnings: winnings)
   end
 
   # this occurs on the delete method. We switch signs because we did all this stuff in winnings method
@@ -57,14 +57,14 @@ class UserBet < ApplicationRecord
 
     if bet.win
       payout = money_bet * bet.odds
-      money = user.money - payout
-      winnings = user.winnings - payout
+      money = bbuser.money - payout
+      winnings = bbuser.winnings - payout
     else
-      money = user.money + money_bet
-      winnings = user.winnings + money_bet
+      money = bbuser.money + money_bet
+      winnings = bbuser.winnings + money_bet
     end
 
-    user.update!(money: money, winnings: winnings)
+    bbuser.update!(money: money, winnings: winnings)
   end
 
   def message

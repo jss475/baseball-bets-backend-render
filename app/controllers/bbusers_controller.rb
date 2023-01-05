@@ -1,17 +1,18 @@
-class UsersController < ApplicationController
-  before_action :authorized, only: [:show]
+class BbusersController < ApplicationController
+  # before_action :authorized, only: [:show]
 
   def index
-    render json: User.all, status: :ok
+    render json: Bbuser.all, status: :ok
   end
 
   def show
     render json: current_user, include: ["user_bets.bet"], status: :ok
+    # include: ["user_bets.bet"],
   end
 
   def create
-    user = User.create!(user_params)
-    session[:user_id] = user.id
+    user = Bbuser.create!(user_params)
+    session[:bbuser_id] = user.id
     render json: user.id, status: :created
   end
 

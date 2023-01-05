@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Bbuser < ApplicationRecord
   has_secure_password
   has_many :user_bets
   has_many :bets, through: :user_bets
