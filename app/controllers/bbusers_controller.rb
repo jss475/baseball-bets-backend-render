@@ -28,7 +28,7 @@ class BbusersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :username, :password, :money, :winnings)
+    params.permit(:name, :username, :password, :password_digest, :money, :winnings)
   end
 
   def authorized
