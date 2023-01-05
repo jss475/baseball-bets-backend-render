@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
   def login
     user = Bbuser.find_by(username: params[:username])
 
+    puts user
+
     if user&.authenticate(params[:password])
       session[:bbuser_id] = user.id
       head :ok
