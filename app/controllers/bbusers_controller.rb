@@ -6,7 +6,7 @@ class BbusersController < ApplicationController
   end
 
   def show
-    render json: current_user, include: ["user_bets.bet"], status: :ok
+    render json: current_user, include: ["user_bets"], status: :ok
     # include: ["user_bets.bet"],
   end
 
