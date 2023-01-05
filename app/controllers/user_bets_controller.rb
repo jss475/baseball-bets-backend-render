@@ -8,11 +8,7 @@ class UserBetsController < ApplicationController
 
   def show
     ub = UserBet.find(params[:id])
-    if ub
-      render json: ub, status: :ok
-    else
-      render json: {}, status: :not_found
-    end
+    render json: ub, status: :ok
   end
 
   def create
