@@ -6,7 +6,8 @@ class BbusersController < ApplicationController
   end
 
   def show
-    render json: current_user, include: ["user_bets"], status: :ok
+    curr_user = Bbuser.find_by(id: session[:bbuser_id])
+    render json: curr_user, include: ["user_bets"], status: :ok
     # include: ["user_bets.bet"],
   end
 
@@ -29,7 +30,8 @@ class BbusersController < ApplicationController
   end
 
   def authorized
-    unless current_user
+    curr_user = Bbuser.find_by(id: session[:bbuser_id])
+    unless curr_user
       render json: { error: "not authorized" }, status: :unauthorized
     end
   end
