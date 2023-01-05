@@ -9,7 +9,7 @@ class BbusersController < ApplicationController
     curr_user = Bbuser.find_by(id: session[:bbuser_id])
     puts curr_user
     puts curr_user.winnings
-    render json: curr_user, serializer: BbuserSerializer, status: :ok
+    render json: curr_user, status: :ok
     # include: ["user_bets.bet"],
   end
 
