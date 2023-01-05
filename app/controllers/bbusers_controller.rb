@@ -1,6 +1,6 @@
 class BbusersController < ApplicationController
   wrap_parameters format: []
-  before_action :authorized, only: [:show]
+  # before_action :authorized, only: [:show]
 
   def index
     render json: Bbuser.all, status: :ok
@@ -34,6 +34,7 @@ class BbusersController < ApplicationController
 
   def authorized
     curr_user = Bbuser.find_by(id: session[:bbuser_id])
+    puts curr_user
     unless curr_user
       render json: { error: "not authorized" }, status: :unauthorized
     end
