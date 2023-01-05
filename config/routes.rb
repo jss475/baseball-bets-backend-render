@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   #namespace :api do
   resources :players, only: %i[index show]
   resources :bets
-  resources :bbusers, only: %i[index]
+  resources :bbusers, only: %i[index show]
   resources :user_bets, only: %i[index show create destroy update]
 
   get "/validate_user", to: "bbusers#show"
