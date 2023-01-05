@@ -1,5 +1,6 @@
 class BbusersController < ApplicationController
-  # before_action :authorized, only: [:show]
+  wrap_parameters format: []
+  before_action :authorized, only: [:show]
 
   def index
     render json: Bbuser.all, status: :ok
